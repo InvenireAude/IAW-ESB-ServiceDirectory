@@ -1,4 +1,5 @@
 import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -32,7 +33,8 @@ import { CallComponent } from './call/call.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    UiModule
+    UiModule,
+    NgbModule
   ],
   exports: [
   ],
