@@ -1,0 +1,46 @@
+<div class="container app-main-container">
+	<h1>Program</h1>
+<!--  {{ program | json }} -->
+	<div class="row" *ngIf="program">
+	
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+				 <h4>{{ name }}</h4> </header>
+
+				<div class="panel-body">
+<!-- 					<code><pre><div [innerHtml]="program.source"></div></pre></code>	  		   		 -->
+
+				<table class="display table table-bordered app-fixed-table app-table">																	
+												<tr>
+													<th colspan="2">Program name</th>
+													<td> {{ name }}</td>
+												</tr>
+												<tr *ngFor="let a of program.args; let i = index">
+													<td [hidden]="i != 0" [attr.rowspan]="program.args.length">Arguments</td>
+													<th> {{ a.name }} </th>
+													<td> <a [routerLink]="['/type', { type: a.typeName, ns: a.typeNamespace } ]">{{ a.typeName }} </a> 
+													: "{{ a.typeNamespace }}"</td>
+												</tr>
+											</tbody>
+										</table>
+
+					<div class="well well-sm">	
+									<table class="code-wrapper app-fixed-table">							
+												<tr>
+													<th>Line</th>
+													<th>Code</th>
+												</tr>
+												<tr *ngFor="let l of program.lines; let i = index">
+													<td class="rownum">{{ i }} </td>
+													<td class="source"><code [innerHtml]="l"></code></td>
+												</tr>
+											</tbody>
+										</table>
+							</div>
+				</div>
+			</section>
+		</div>
+	</div>
+ 
+</div>

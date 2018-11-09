@@ -1,0 +1,13 @@
+
+<div class="card app-accordion-group">
+	<div class="card-header" (click)="toggleOpen($event)">
+		<h5 class="card-title">
+			<a><span>{{heading}}</span></a>
+		</h5>
+	</div>
+	<div class="card-block" [hidden]="!isOpen">
+		<div class="panel-body">
+			<ng-content></ng-content>
+		</div>
+	</div>
+</div>

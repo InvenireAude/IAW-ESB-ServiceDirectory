@@ -1,0 +1,54 @@
+<div class="container app-main-container" *ngIf="interfaces">
+	<h1>Interfaces</h1>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header">Interfaces</h3>
+		</div>
+	</div>
+<!--    "id" : "EVENT", -->
+<!--       "fullName" : "Event registration.", -->
+<!--       "namespace" : "http://www.api.bik.pl/esbsd/interface/event", -->
+<!--       "mode" : "SendOnly", -->
+<!--       "documentation" : "\n\t  The general events interface.\n\t", -->
+<!--       "properties" : [ { -->
+<!--          "name" : "PERSISTANCE", -->
+<!--          "value" : "YES" -->
+<!--       }], -->
+
+
+	
+     <app-accordion>
+        <app-accordion-group heading="{{ i.id}} - {{ i.fullName }}" *ngFor="let i of interfaces"> 
+ 
+						<table class="display table table-bordered table-striped app-fixed-table app-table">					
+							<tbody>
+							  <tr>
+							   <td> Namespace </td>
+							   <td>  <a [routerLink]="['/types', { ns: i.namespace } ]">{{ i.namespace }} </a></td> 
+							  </tr>
+							  <tr>
+							   <td> Mode </td>
+							   <td> {{ i.mode }}</td>
+							  </tr>
+							  <tr>
+							   <td> Documentation </td>
+							   <td> {{ i.documentation }}</td>
+							  </tr>
+						</table>							
+
+ 			    <td>  <a [routerLink]="['/interface', { id: i.id } ]"> Show details ... </a></td> 
+
+				
+				<h5>Properties</h5>	
+				<table class="display table table-bordered table-striped app-fixed-table app-table">					
+							<tbody>
+							  <tr *ngFor="let p of i.properties">
+							   <td> {{ p.name }} </td>
+							   <td> {{ p.value }}</td> 
+							  </tr>
+							</table>							
+        </app-accordion-group>
+      </app-accordion>
+	
+</div>

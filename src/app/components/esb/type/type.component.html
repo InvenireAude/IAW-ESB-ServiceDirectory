@@ -1,0 +1,132 @@
+<div class="container app-main-container" *ngIf="info">
+	<h1>Type</h1>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header">Data Type : {{ info.name }}</h3>
+		</div>
+	</div>
+
+	<div class="row" [hidden]="!isMulti">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					Properties 
+				</header>
+
+
+				<div class="panel-body" [hidden]="!info.properties">
+				
+					
+						<table class="display table table-bordered table-striped app-fixed-table app-table">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Type</th>
+									<th>Type Namespace</th>
+									<th>XML Attribute</th>
+									<th>Array</th>
+
+								</tr>
+							</thead>
+							<tbody>
+ 							    <ng-template ngFor let-p [ngForOf]="info.properties"> 
+								<tr> 
+									<td>
+									  {{ p.name }} <span [hidden]="!p.isList">[]</span>
+									</td>
+									<td>
+									  <a [routerLink]="['/type', { type: p.typeName, ns: p.typeNamespace } ]">{{ p.typeName }}</a></td>
+									<td>
+									  <a [routerLink]="['/types', { ns: p.typeNamespace } ]">{{p.typeNamespace }} </a></td>
+									<td>{{ p.isXMLAttribute }}</td>
+									<td>{{ p.isList }}</td>
+								</tr>
+								<tr [hidden]="!p.description">
+									<td colspan="5">{{ p.description }}</td>
+								</tr>
+							   </ng-template>	
+							</tbody>
+						</table>
+					</div>
+				
+			</section>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="info.references || info.base ||info.directExtensions">
+		<div id="tab_qmgrs" class="col-sm-12">
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<h3>Type References</h3>
+				</header>
+
+
+				<div class="panel-body">
+				 
+					<div *ngIf="info.base">
+						<h4>Extension of</h4>
+						<div class="adv-table">
+							<table class="display table table-bordered app-fixed-table app-table">
+								<tbody>
+									<tr>
+										<td>Type</td>
+										<td><a [routerLink]="['/type', { type: info.base.name, ns: info.base.namespace } ]">{{ info.base.name }}</a></td>
+								   </tr>
+								   <tr>
+										<td>Namespace</td>
+										<td><a [routerLink]="['/types', { ns: info.base.namespace } ]">{{ info.base.namespace }} </a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				
+					<div *ngIf="info.directExtensions">
+						<h4>Extended in</h4>
+						<div class="adv-table">
+							<table class="display table table-bordered app-fixed-table app-table">
+								<thead>
+									<tr>
+										<th>Type</th>
+										<th>Namespace</th>
+									</tr>
+								</thead>
+								<tbody>
+								    <tr *ngFor="let t of info.directExtensions">									
+										<td><a [routerLink]="['/type', { type: t.name, ns: t.namespace } ]">{{ t.name }}</a></td>
+										<td><a [routerLink]="['/types', { ns: t.namespace} ]">{{ t.namespace }} </a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
+					<div *ngIf="info.references">
+						<h4>Referenced in</h4>
+						<div class="adv-table">
+							<table class="display table table-bordered app-fixed-table app-table">
+								<thead>
+									<tr>
+										<th>Type</th>
+										<th>Namespace</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let t of  info.references">
+										<td><a [routerLink]="['/type', { type: t.name, ns: t.namespace } ]">{{ t.name }}</a></td>
+										<td><a [routerLink]="['/types', { ns: t.namespace} ]">{{ t.namespace }} </a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</div>
+</div>
+

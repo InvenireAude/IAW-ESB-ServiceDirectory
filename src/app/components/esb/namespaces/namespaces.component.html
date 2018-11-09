@@ -1,0 +1,36 @@
+<div class="container app-main-container">
+	<h1>Namespaces</h1>
+
+	<div class="row" ng-show="namespaces">
+		<div id="tab_qmgrs" class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading"> List of namespaces </header>
+
+				<div class="panel-body">
+		  		   		
+		 		<div class="input-group">
+    		   		<input type="text" name="namespace" (change)="applyFilters()" [(ngModel)]="filter.namespace" placeholder="Namespace">		
+   					<span class="input-group-btn">
+       				 <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+    			   </span>
+				</div>
+		  		   				
+						<table class="display table table-bordered table-striped app-fixed-table app-table">							
+							<thead>
+								<tr>
+									<th class="">Namespace</th>
+								</tr>
+							</thead>
+							<tbody>
+							    <tr *ngFor="let n of filteredItems">
+									<td><a [routerLink]="['/types', { ns: n} ]">{{ n }} </a></td>
+								</tr>
+							</tbody>
+						</table>
+	
+				</div>
+			</section>
+		</div>
+	</div>
+ 
+</div>

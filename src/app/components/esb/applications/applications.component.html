@@ -1,0 +1,32 @@
+<div class="container app-main-container">
+	<h1>Applications list</h1>
+
+	<div class="row" ng-show="types">
+		<div id="tab_qmgrs" class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading"> Applications </header>
+
+				<div class="panel-body">
+
+						<table class="display table table-bordered table-striped app-fixed-table app-table"
+							id="table-types">
+							<thead>
+								<tr>
+									<th class="width-25pct">ID</th>
+									<th class="">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+							    <tr *ngFor="let a of applications">
+									<td class="width-25pct"><a [routerLink]="['/application', { id: a.id}  ]">{{ a.id }} </a></td>
+									<td><a [routerLink]="['/application', { id: a.id  }]">{{ a.fullName }} </a></td>
+								</tr>
+							</tbody>
+						</table>
+	
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,209 @@
+@font-face {
+  font-family: 'Libre Franklin';
+  src: url("/assets/fonts/LibreFranklin-Regular.ttf")
+}
+
+.app-logo {
+	width:10em;
+	height:2em;
+    background-image: url('/assets/images/logo.png');
+    background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center center;  
+}
+
+body{
+	font-family: 'Libre Franklin', sans-serif;	
+}
+.app-main-container{
+    margin-top: 64px;
+/*    min-height: 50em; */
+}
+
+.app-main-content{
+    min-height: 40em;
+}
+
+/*.app-fixed-table { */
+/*     table-layout: fixed; */
+/*     word-wrap: break-word; */
+/*     font-size: smaller; */
+/* } */
+
+
+.app-accordion-group{
+	margin: 1em;
+}
+.width-25pct {
+    width:25%
+}
+
+.width-33pct {
+    width:33%
+}
+
+.width-50pct {
+    width:50%
+}
+
+.app-table td {
+    padding: .25rem;
+}
+
+.app-table th {
+    padding: .25rem;
+}
+
+.text-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.fnt-lg{
+	font-size: 120%;
+}
+
+.fnt-sm{
+	font-size: 75%;
+}
+
+.fnt-xs{
+	font-size: 60%;
+}
+
+/* Tree CSS */
+
+.tree li {
+    margin: 0px 0;
+	
+	list-style-type: none;
+    position: relative;
+	padding: 15px 5px 0px 5px;
+}
+
+.tree li::before{
+    content: '';
+	position: absolute; 
+    top: 0;
+	width: 1px; 
+    height: 100%;
+	right: auto; 
+    left: -20px;
+	border-left: 1px solid #ccc;
+    bottom: 50px;
+}
+.tree li::after{
+    content: '';
+	position: absolute; 
+    top: 30px; 
+	width: 25px; 
+    height: 20px;
+	right: auto; 
+    left: -20px;
+	border-top: 1px solid #ccc;
+}
+.tree-box{
+    display: inline-block;
+	border: 1px solid #ccc;
+	padding: 3px 5px;
+	text-decoration: none;
+	color: #666;
+	font-family: arial, verdana, tahoma;
+	font-size: 11px;
+    border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.tree > ul > li::before, .tree > ul > li::after{
+	border: 0;
+}
+
+.tree li:last-child::before{ 
+      height: 30px;
+}
+
+.tree-value {
+	background: #e6e6fa; 
+	color: #000; 
+	border: 1px solid #94a0b4;
+}
+
+.tree-old li span:hover, 
+.tree-old li span:hover~ul li span {
+	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+}
+
+.tree li span:hover+ul li::after, 
+.tree li span:hover+ul li::before, 
+.tree li span:hover+ul::before, 
+.tree li span:hover+ul ul::before{
+	border-color:  #94a0b4;
+}
+
+
+
+
+/* Code CSS */
+.rownum {      
+    width: 1%;
+    min-width: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.3);
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    -moz-user-select: none;
+    border-style: solid;
+    border-color: #EEE;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-width: 0px 1px 0px 0px;
+}
+
+.source {
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    background : #eeeeec;
+    font-size: 12px;
+    vertical-align: top;
+    width: 90%;
+}
+
+code{
+    font-size: 80%;
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    color: #333;
+    font-size: 12px;
+    background : #eeeeec;
+    white-space: pre;
+}
+    
+.code-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+code .ias-ys-symbol{
+    color: #800080;
+}
+
+code .ias-ys-string{
+    color: #000000;
+}
+code .ias-ys-string{
+    color: #000000;
+}
+
+code .ias-ys-ns{
+    color: #0000ff;
+}
