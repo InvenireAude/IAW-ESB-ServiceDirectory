@@ -7,13 +7,13 @@
 	width:10em;
 	height:2em;
     background-image: url('/assets/images/logo.png');
-    background-size:     cover;                      
+    background-size:     cover;
     background-repeat:   no-repeat;
-    background-position: center center;  
+    background-position: center center;
 }
 
 body{
-	font-family: 'Libre Franklin', sans-serif;	
+	font-family: 'Libre Franklin', sans-serif;
 }
 .app-main-container{
     margin-top: 64px;
@@ -75,7 +75,7 @@ body{
 
 .tree li {
     margin: 0px 0;
-	
+
 	list-style-type: none;
     position: relative;
 	padding: 15px 5px 0px 5px;
@@ -83,22 +83,22 @@ body{
 
 .tree li::before{
     content: '';
-	position: absolute; 
+	position: absolute;
     top: 0;
-	width: 1px; 
+	width: 1px;
     height: 100%;
-	right: auto; 
+	right: auto;
     left: -20px;
 	border-left: 1px solid #ccc;
     bottom: 50px;
 }
 .tree li::after{
     content: '';
-	position: absolute; 
-    top: 30px; 
-	width: 25px; 
+	position: absolute;
+    top: 30px;
+	width: 25px;
     height: 20px;
-	right: auto; 
+	right: auto;
     left: -20px;
 	border-top: 1px solid #ccc;
 }
@@ -119,24 +119,24 @@ body{
 	border: 0;
 }
 
-.tree li:last-child::before{ 
+.tree li:last-child::before{
       height: 30px;
 }
 
 .tree-value {
-	background: #e6e6fa; 
-	color: #000; 
+	background: #e6e6fa;
+	color: #000;
 	border: 1px solid #94a0b4;
 }
 
-.tree-old li span:hover, 
+.tree-old li span:hover,
 .tree-old li span:hover~ul li span {
 	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
 
-.tree li span:hover+ul li::after, 
-.tree li span:hover+ul li::before, 
-.tree li span:hover+ul::before, 
+.tree li span:hover+ul li::after,
+.tree li span:hover+ul li::before,
+.tree li span:hover+ul::before,
 .tree li span:hover+ul ul::before{
 	border-color:  #94a0b4;
 }
@@ -145,7 +145,7 @@ body{
 
 
 /* Code CSS */
-.rownum {      
+.rownum {
     width: 1%;
     min-width: 50px;
     padding-right: 10px;
@@ -181,11 +181,11 @@ code{
     font-size: 80%;
     font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
     color: #333;
-    font-size: 12px;
+    font-size: 16px;
     background : #eeeeec;
     white-space: pre;
 }
-    
+
 .code-wrapper {
     overflow-x: auto;
     overflow-y: hidden;
@@ -198,12 +198,21 @@ code .ias-ys-symbol{
 }
 
 code .ias-ys-string{
-    color: #000000;
-}
-code .ias-ys-string{
-    color: #000000;
+    color: #0000aa;
 }
 
 code .ias-ys-ns{
     color: #0000ff;
+}
+
+.app-btn-action{
+  background-color: #bbb
+}
+
+.app-btn-send{
+  background-color:#bbb;
+}
+
+.app-no-margin{
+  margin: 0px;
 }

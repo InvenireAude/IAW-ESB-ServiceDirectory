@@ -71,6 +71,10 @@ export class HttpService extends Http {
       return this.postRequest('/esb-sd/inquiry', service, { selector : selector }, true);
   }
 
+  requestWithSelectorNoCache(service: string, selector: any) {
+    return this.postRequest('/esb-sd/inquiry', service, { selector : selector }, false);
+  }
+
   private onCatch(error: any, caught: Observable<any>): Observable<any> {
       return Observable.throw(error);
   }

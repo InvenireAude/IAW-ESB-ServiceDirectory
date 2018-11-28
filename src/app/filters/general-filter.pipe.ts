@@ -16,7 +16,7 @@ export class GeneralFilterPipe implements PipeTransform {
   applyFilter(item: any, filter: any): boolean {
 
     for (const field in filter) {
-      if (filter[field]) {
+      if (filter[field] && item[field]) {
         if (typeof filter[field] === 'string') {
           if (item[field].toLowerCase().indexOf(filter[field].toLowerCase()) === -1) {
             return false;

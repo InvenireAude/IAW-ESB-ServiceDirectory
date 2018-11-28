@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TypesService } from './services/esb/types.service';
 import { LangService } from './services/esb/lang.service';
 import { ServiceDirectoryService } from './services/esb/service-directory.service';
+import { QSystemService } from './services/esb/qsystem.service';
 import { TesterService } from './services/esb/tester.service';
 import { HttpService } from './services/http.service';
 import { LoaderService } from './services/loader.service';
@@ -22,13 +23,17 @@ import { UiModule } from './components/ui/ui.module';
 import { MainModule } from './components/main/main.module';
 import { ESBModule } from './components/esb/esb.module';
 
+import { DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
+
+
+
 export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptions, loaderService: LoaderService) {
   return new HttpService(backend, defaultOptions, loaderService);
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,13 +48,15 @@ export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptio
     TypesService,
     LangService,
     ServiceDirectoryService,
+    QSystemService,
     TesterService,
     LoaderService,
      {
           provide: HttpService,
           useFactory: backendFactory,
           deps: [XHRBackend, RequestOptions, LoaderService ]
-       }
+       },
+    DefaultUrlSerializer
   ],
   bootstrap: [AppComponent]
 })

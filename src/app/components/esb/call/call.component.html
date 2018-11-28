@@ -1,122 +1,142 @@
 <div class="container-fluid app-main-container">
-	<h1>Test services</h1>
+  <h1>Test services</h1>
 
-	<div class="row" ng-show="serviceImpl">
+  <div class="row" ng-show="serviceImpl">
 
-		<div class="col-md-12">
+    <div class="col-md-12">
 
-			<div class="card">
-				<div class="card-header">
-					<h4>Service: {{ service }}</h4>
-				</div>
-				<div class="card-block">
+      <div class="card">
+        <div class="card-header">
+          <h4>Service: {{ service }}</h4>
+        </div>
+        <div class="card-block">
 
-					<table class="display table table-bordered app-fixed-table app-table">
-						<tr>
-							<td>Application</td>
-							<td><a [routerLink]="['/application', { id:application, ii: interface, im: 'Client' }  ]">{{ application }}</a></td>
-						</tr>
-						<tr>
-							<td>Interface</td>
-							<td><a [routerLink]="['/interface', { id: interface } ]">{{ interface }} </a></td>
-						</tr>
-						<tr>
-							<td>Program</td>
-							<td><a [routerLink]="['/program', { name: serviceImpl.program } ]"><code>{{ serviceImpl.program }}</code></a></td>
-						</tr>
+          <table class="display table table-bordered app-fixed-table app-table">
+            <tr>
+              <td>Application</td>
+              <td><a [routerLink]="['/application', { id:application, ii: interface, im: 'Client' }  ]">{{ application
+                  }}</a></td>
+            </tr>
+            <tr>
+              <td>Interface</td>
+              <td><a [routerLink]="['/interface', { id: interface } ]">{{ interface }} </a></td>
+            </tr>
+            <tr>
+              <td>Program</td>
+              <td><a [routerLink]="['/program', { name: serviceImpl.program } ]"><code>{{ serviceImpl.program }}</code></a></td>
+            </tr>
 
-					</table>
-
-
-				</div>
-			</div>
-
-			<pre><code>{{ rootProperty1 | json }}</code></pre>
+          </table>
 
 
-		</div>
-	</div>
-	<hr>
+        </div>
+      </div>
 
-	<div class="row">
+      <pre><code>{{ rootProperty1 | json }}</code></pre>
 
-		<div class="col-md-6">
-			<div class="card">
-				<div class="card-header">
-					<h4>Request</h4>
-					
-					<span class="pull-right"> <a class="btn btn-success" role="button" (click)="send()">Send !</a> </span>
-					
-					<div>
-						<label id="lbl">File name </label>
-						<input type='file' (change)="fileChanged($event)">					  
-					</div>
-					
-					<button type="button" class="btn btn-primary" (click)="uploadDocument()">Upload JSON</button>
 
-				</div>
-				<div class="card-block fnt-smxx">
-					<app-object-tree [node]="rootProperty" root="true" *ngIf="rootProperty"> </app-object-tree>
-					<div class="card">
-						<div class="well">
-							<pre><code>{{ output | json }}</code></pre>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    </div>
+  </div>
+  <hr>
 
-		<div class="col-md-6">
-			<div class="card">
-				<div class="card-header">
-					<h4>Response</h4>
-					<span *ngIf="input" class="pull-right"> <a class="btn btn-success" role="button" (click)="download()"><i class="fa fa-download"></i></a>
-					</span>
-				</div>
-				<div class="card-block" *ngIf="input">
-					<div class="well fnt-smxx">
-						<pre><code>{{ input.data | json }}</code></pre>
-					</div>
+  <div class="row">
 
-					<table class="display table table-bordered table-condensed app-fixed-table app-table">
-						<thead>
-							<tr>
-								<th>Attribute</th>
-								<th>Value</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Message ID</td>
-								<td>{{input.ctx.MID}}</td>
-							</tr>
-							<tr>
-								<td>Context ID</td>
-								<td>{{input.ctx.CID}}</td>
-							</tr>
-							<tr>
-								<td>Format</td>
-								<td>{{input.ctx.FMT}}</td>
-							</tr>
-							<tr>
-								<td>Persistance</td>
-								<td>{{input.ctx.PERSISTANCE}}</td>
-							</tr>
-							<tr>
-								<td>Priority</td>
-								<td>{{input.ctx.PRIORITY}}</td>
-							</tr>
-							<tr *ngFor="let a of input.ctx.attributes">
-								<td>{{a.name}}</td>
-								<td>{{a.value}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
 
+            <div class="col-md-8">
+              <h4>Request</h4>
+            </div>
+
+            <div class="col-md-2">
+              <form>
+                <div class="form-group">
+                  <div class="col-sm-6">
+                    <label class="btn btn-sm app-btn-action">
+                      <i class="fa fa-upload"></i>
+                      <input type='file' class="form-control-plaintext" (change)="fileChanged($event)" style="display: none;">
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-md-2">
+                <a class="btn btn-sm app-btn-send" role="button" (click)="send()">
+                  <a class="fa fa-share"></a>
+                </a>
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="card-block fnt-smxx container-fluid">
+
+          <app-object-tree [node]="rootProperty" root="true" *ngIf="rootProperty"> </app-object-tree>
+          <div class="card">
+            <div class="well">
+              <pre><code>{{ output | json }}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>Response</h4>
+          <span *ngIf="input" class="pull-right"> <a class="btn btn-success" role="button" (click)="download()"><i
+                class="fa fa-download"></i></a>
+          </span>
+          <span *ngIf="callElapsedTime">Elapsed time: {{ callElapsedTime }}ms.</span>
+        </div>
+        <div class="card-block" *ngIf="input">
+          <div class="well fnt-smxx">
+            <pre><code>{{ input.data | json }}</code></pre>
+          </div>
+
+          <table class="display table table-bordered table-condensed app-fixed-table app-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Message ID</td>
+                <td>{{input.ctx.MID}}</td>
+              </tr>
+              <tr>
+                <td>Context ID</td>
+                <td>{{input.ctx.CID}}</td>
+              </tr>
+              <tr>
+                <td>Format</td>
+                <td>{{input.ctx.FMT}}</td>
+              </tr>
+              <tr>
+                <td>Persistance</td>
+                <td>{{input.ctx.PERSISTANCE}}</td>
+              </tr>
+              <tr>
+                <td>Priority</td>
+                <td>{{input.ctx.PRIORITY}}</td>
+              </tr>
+              <tr *ngFor="let a of input.ctx.attributes">
+                <td>{{a.name}}</td>
+                <td>{{a.value}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--    <pre><code>{{ rootProperty | json }}</code></pre> -->

@@ -16,6 +16,13 @@ import { TypesComponent } from './types/types.component';
 import { NamespacesComponent } from './namespaces/namespaces.component';
 import { ProgramComponent } from './program/program.component';
 import { CallComponent } from './call/call.component';
+import { RouteTransformerDirective } from './program/routetransform';
+import { SystemStatsComponent } from './system-stats/system-stats.component';
+import { QueueBrowserComponent } from './queue-browser/queue-browser.component';
+import { SystemStatsMemoryComponent } from './system-stats-memory/system-stats-memory.component';
+import { SystemStatsMemoryManagerComponent } from './system-stats-memory-manager/system-stats-memory-manager.component';
+import { SystemStatsQueuesComponent } from './system-stats-queues/system-stats-queues.component';
+import { BrokerStatsComponent } from './broker-stats/broker-stats.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,14 @@ import { CallComponent } from './call/call.component';
     TypesComponent,
     NamespacesComponent,
     ProgramComponent,
-    CallComponent
+    CallComponent,
+    RouteTransformerDirective,
+    SystemStatsComponent,
+    QueueBrowserComponent,
+    SystemStatsMemoryComponent,
+    SystemStatsMemoryManagerComponent,
+    SystemStatsQueuesComponent,
+    BrokerStatsComponent
   ],
   imports: [
     CommonModule,

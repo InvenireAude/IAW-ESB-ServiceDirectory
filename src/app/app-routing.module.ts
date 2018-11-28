@@ -12,6 +12,9 @@ import { InterfaceComponent } from './components/esb/interface/interface.compone
 import { InterfacesComponent } from './components/esb/interfaces/interfaces.component';
 import { ProgramComponent } from './components/esb/program/program.component';
 import { CallComponent } from './components/esb/call/call.component';
+import { SystemStatsComponent } from './components/esb/system-stats/system-stats.component';
+import { QueueBrowserComponent } from './components/esb/queue-browser/queue-browser.component';
+import { BrokerStatsComponent } from './components/esb/broker-stats/broker-stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
@@ -25,6 +28,9 @@ const routes: Routes = [
   { path: 'namespaces',    component: NamespacesComponent  },
   { path: 'program',       component: ProgramComponent  },
   { path: 'call',       component: CallComponent  },
+  { path: 'systemStats',       component: SystemStatsComponent  },
+  { path: 'queueBrowser',       component: QueueBrowserComponent  },
+  { path: 'brokerStats',       component: BrokerStatsComponent  },
   { path: 'about',   component: AboutComponent }
 ];
 

@@ -107,7 +107,7 @@ limitations under the License.
 			var index;
 			var rules = this._rules[this._state];
 			while (!match) {
-				console.log(this._currString);
+				// console.log(this._currString);
 				for (var i = 0; i < rules.length; ++i) {
 					var rule = rules[i];
 					var tempMatch = rule.regex.exec(this._currString);

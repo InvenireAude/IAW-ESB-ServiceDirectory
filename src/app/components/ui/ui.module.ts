@@ -14,6 +14,7 @@ import { ObjectTreeComponent } from './object-tree/object-tree.component';
 
 import { KeysPipe } from '../../filters/keys-filter.pipe';
 import { KeysNoTypePipe } from '../../filters/keys-notype-filter.pipe';
+import { DownloadContentComponent } from './download-content/download-content.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { KeysNoTypePipe } from '../../filters/keys-notype-filter.pipe';
     LoaderComponent,
     ObjectTreeComponent,
     KeysPipe,
-    KeysNoTypePipe
+    KeysNoTypePipe,
+    DownloadContentComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,7 @@ import { KeysNoTypePipe } from '../../filters/keys-notype-filter.pipe';
     AccordionGroupComponent,
     LoaderComponent,
     ObjectTreeComponent,
+    DownloadContentComponent,
     KeysPipe,
     KeysNoTypePipe
   ],

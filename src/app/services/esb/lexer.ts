@@ -21,6 +21,14 @@ export class Lexer {
      value: text
     };
    },
+// TODO sql (ARRAY?)
+   'SELECT|INTO|INSERT|DELETE|UPDATE|FROM|WHERE|MAP'
+   : function (text) {
+    return {
+     token: 'SYMBOL',
+     value: text
+    };
+   },
 
   'TRUE|FALSE|NULL': function (text) {
    return {
@@ -36,7 +44,7 @@ export class Lexer {
    };
   },
 
-  '".*"': function (text) {
+  '".*"|\'.*\'': function (text) {
    return {
     token: 'STRING',
     value: text
@@ -94,7 +102,7 @@ export class Lexer {
    return '/type;type=' + t + ';ns=' + encodeURIComponent(ns);
   },
   mkProgramLink: function (p) {
-   return '/program;name=' + encodeURIComponent(p);
+   return '/program;name=' + p; // encodeURIComponent(p);
   }
  };
 
@@ -114,7 +122,7 @@ export class Lexer {
  try {
 
   while ((token = l.lex()) !== LexedModule.Lexed.EOF) {
-   console.log(token);
+   // console.log(token);
 
    if (state === 'IDENTIFIER') {
 
@@ -137,7 +145,7 @@ export class Lexer {
      }
 
      if (ns.token === undefined || ns.token !== 'STRING') {
-      throw { msg: 'Expected type NS' };
+      throw { msg: 'Expected type NS, got:' + ns.token + ', value = ' + ns.value};
      }
 
      r = r + '<a href="' + links.mkTypeLink(current, ns.value) + '">';
