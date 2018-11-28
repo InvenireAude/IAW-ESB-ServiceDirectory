@@ -1,0 +1,29 @@
+<div class="row">
+
+    <div class="col-md-12">
+      <h1>Broker Statistics</h1>
+    </div>
+
+    <div class="col-md-12" *ngIf="records.length > 0">
+        <table class="display table table-bordered table-striped app-fixed-table app-table text-right">
+            <thead>
+              <tr>
+                <th class="width-25pct">Service</th>
+                <th> Min </th>
+                <th> Avg </th>
+                <th> Max </th>
+                <th> Count </th>
+              </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let r of records">
+                 <td>{{ r.key }}</td>
+                 <td>{{ r.min }}</td>
+                 <td>{{ r.avg }}</td>
+                 <td>{{ r.max }}</td>
+                 <td>{{ r.count }}</td>
+               </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
