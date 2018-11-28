@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <h2>Queue:</h2>
+      <h1>{{ queue }}</h1>
+      Total messages: {{ numMessages }}
+    </div>
+
+    <div class="col-md-12"  *ngIf="messages.length > 0">
+      <table class="display table table-bordered table-striped app-fixed-table app-table">
+        <tbody>
+          <ng-container *ngFor="let message of messages; let i=index;">
+            <tr>
+              <td [rowSpan]="message.context.attributes.length + 6" class="align-middle">
+                {{ (page - 1) * itemsPerPage + i + 1}}</td>
+              <td>Message ID</td>
+              <td>{{message.context.MID}}</td>
+            </tr>
+            <tr>
+              <td>Context ID</td>
+              <td>{{message.context.CID}}</td>
+            </tr>
+            <tr>
+              <td>Format</td>
+              <td>{{message.context.FMT}}</td>
+            </tr>
+            <tr>
+              <td>Persistance</td>
+              <td>{{message.context.PERSISTANCE}}</td>
+            </tr>
+            <tr>
+              <td>Priority</td>
+              <td>{{message.context.PRIORITY}}</td>
+            </tr>
+            <tr *ngFor='let a of message.context.attributes'>
+              <td>{{a.name}}</td>
+              <td>{{a.value}}</td>
+            </tr>
+            <tr>
+
+              <td colspan="2">
+                <span class="pull-right">
+                  <app-download-content [data]="message.rawContent" dataType="json" [fileName]="'MSG_'+message.context.MID"></app-download-content>
+                </span>
+                <pre class="app-no-margin">{{message.rawContent}}</pre>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-12" *ngIf="messages.length > 0">
+      <div class="text-center">
+        <ngb-pagination [pageSize]="itemsPerPage" [collectionSize]="numMessages" [maxSize]="5" [rotate]="true" [(page)]="page"
+          [directionLinks]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-md-12">
+      <p></p>
+    </div>
+  <div class="col-md-12">
+    <app-system-stats-memory-manager [memoryManager]="memory.systemHeap" name="System Heap"></app-system-stats-memory-manager>
+    <app-system-stats-memory-manager [memoryManager]="memory.queueData" name="Queue Data"></app-system-stats-memory-manager>
+    <app-system-stats-memory-manager [memoryManager]="memory.applicationData" name="Application Data"></app-system-stats-memory-manager>
+  </div>
+</div>

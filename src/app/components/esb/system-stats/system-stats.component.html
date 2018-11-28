@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-12" *ngIf="systemStats">
+    <h1>Statistics</h1>
+  </div>
+</div>
+
+<div *ngIf="systemStats">
+
+  <div class="col-md-12">
+    <h3>System: {{ systemStats.name }}</h3>
+  </div>
+
+
+  <div class="col-md-12">
+    <ngb-tabset>
+      <ngb-tab title="Queues">
+        <ng-template ngbTabContent>
+          <app-system-stats-queues [queues]="systemStats.queues" [registryAlias]="systemStats.registryAlias"></app-system-stats-queues>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Memory">
+        <ng-template ngbTabContent>
+          <app-system-stats-memory [memory]="systemStats.memory"></app-system-stats-memory>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+
+  <div class="col-md-12">
+
+  </div>
+
+
+</div>

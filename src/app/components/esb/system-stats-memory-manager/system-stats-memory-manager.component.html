@@ -1,0 +1,131 @@
+<div class="row">
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-1">
+        <a class="btn btn-sm" (click)="show()" *ngIf="!showDetails"><i class="fa fa-plus"></i></a>
+        <a class="btn btn-sm" (click)="hide()" *ngIf="showDetails"><i class="fa fa-minus"></i></a>
+      </div>
+      <div class="col-sm-5 col-md-2">
+        <h5>{{ name }}</h5>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <p>
+          <ngb-progressbar showValue="true" [value]="100 * memoryManager.totalAllocated / memoryManager.totalSize"></ngb-progressbar>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12" *ngIf="showDetails">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="display table table-bordered table-striped app-fixed-table app-table text-right">
+              <thead>
+                <tr>
+                  <th>Entries</th>
+                  <th>BucketSize</th>
+                  <th>Total Size</th>
+                  <th>Total Allocated</th>
+                  <th>FragmentationPct</th>
+                  <th>Allocated</th>
+                  <th>HighWater</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ memoryManager.entries }}</td>
+                  <td>{{ memoryManager.bucketSize }}</td>
+                  <td>{{ memoryManager.totalSize }}</td>
+                  <td>{{ memoryManager.totalAllocated }}</td>
+                  <td>{{ memoryManager.fragmentationPct }}</td>
+                  <td>{{ memoryManager.allocated }}</td>
+                  <td>{{ memoryManager.highWater }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-sm-12 col-md-6">
+            <table class="display table table-bordered table-striped app-fixed-table app-table text-right">
+              <thead>
+                <tr>
+                  <th class="width-25pct">Size</th>
+                  <th class="width-25pct">Free</th>
+                  <th class="width-25pct">Continous Free</th>
+                  <th class="width-25pct">Allocated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of memoryManager.slots">
+                  <td>{{ s.size }}</td>
+                  <td>{{ s.free }}</td>
+                  <td>{{ s.cfree }}</td>
+                  <td>{{ s.allocated }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-sn-12 col-md-6">
+            <table class="display table table-bordered table-striped app-fixed-table app-table text-right">
+              <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>Min</th>
+                  <th>Avg</th>
+                  <th>Max</th>
+                  <th>Total</th>
+                  <th>Number</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngIf="memoryManager.allocations">
+                  <th>Allocations</th>
+                  <td>{{ memoryManager.allocations.min }}</td>
+                  <td>{{ memoryManager.allocations.avg }}</td>
+                  <td>{{ memoryManager.allocations.max }}</td>
+                  <td>{{ memoryManager.allocations.total }}</td>
+                  <td>{{ memoryManager.allocations.num }}</td>
+                </tr>
+
+                <tr *ngIf="memoryManager.waits">
+                  <th>Waits</th>
+                  <td>{{ memoryManager.waits.min }}</td>
+                  <td>{{ memoryManager.waits.avg }}</td>
+                  <td>{{ memoryManager.waits.max }}</td>
+                  <td>{{ memoryManager.waits.total }}</td>
+                  <td>{{ memoryManager.waits.num }}</td>
+                </tr>
+
+                <tr *ngIf="memoryManager.searches">
+                  <th>Searches</th>
+                  <td>{{ memoryManager.searches.min }}</td>
+                  <td>{{ memoryManager.searches.avg }}</td>
+                  <td>{{ memoryManager.searches.max }}</td>
+                  <td>{{ memoryManager.searches.total }}</td>
+                  <td>{{ memoryManager.searches.num }}</td>
+                </tr>
+
+                <tr *ngIf="memoryManager.searchesNoSplit">
+                  <th>Non-split Searches</th>
+                  <td>{{ memoryManager.searchesNoSplit.min }}</td>
+                  <td>{{ memoryManager.searchesNoSplit.avg }}</td>
+                  <td>{{ memoryManager.searchesNoSplit.max }}</td>
+                  <td>{{ memoryManager.searchesNoSplit.total }}</td>
+                  <td>{{ memoryManager.searchesNoSplit.num }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
