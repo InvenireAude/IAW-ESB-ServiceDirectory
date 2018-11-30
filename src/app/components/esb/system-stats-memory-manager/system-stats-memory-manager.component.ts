@@ -10,7 +10,7 @@ export class SystemStatsMemoryManagerComponent implements OnInit {
   @Input() memoryManager: any;
   @Input() name: string;
 
-  private showDetails = false;
+  public showDetails = false;
   constructor() { }
 
   ngOnInit() {

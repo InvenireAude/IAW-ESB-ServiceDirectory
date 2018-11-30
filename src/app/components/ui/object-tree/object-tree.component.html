@@ -1,96 +1,83 @@
 <!-- <div *ngIf="o._type.isComplex"> -->
 <div *ngIf="node.info" class="tree">
-<!--  Tree: {{ node | json }} -->
- 
- <span class="tree-box" [class.tree-value]="node.values.length > 0">
-   {{ node.name }} 
-   </span>
-<!--    {{ node.values.length }} -->
-<!--     {{ node.isList | json }} -->
-<!--   {{ extension | json }} -->
-   
+  <!--  Tree: {{ node | json }} -->
 
-   <span *ngIf="node.info.allExtensions" [hidden]="(node.values.length > 0)">
-    
-    <a (click)="node.expand=true" class="fa fa-angle-double-down" [hidden]="node.expand"> </a>
-    <a (click)="node.expand=false" class="fa fa-angle-double-up" [hidden]="!node.expand"> </a>
-    
-    <select #abc (change)="setExtension(abc.value)" class="custom-select"  [hidden]="!node.expand">
-        <option value="">
-           {{ node.typeName }} {{node.typeNamespace }}
-        </option>  		
-        <option *ngFor="let e of node.info.allExtensions; let i = index" [value]="i">
-            {{e.name }} {{e.namespace }}
-        </option>
-     </select>
-   </span>
-    
-    <span *ngIf="node.isList || (node.values.length == 0)">
-      <a (click)="expand()" class="fa fa-plus-square-o"> </a>
+  <span class="tree-box" [class.tree-value]="node.values.length > 0">
+    {{ node.name }}
+  </span>
+  <!--    {{ node.values.length }} -->
+  <!--     {{ node.isList | json }} -->
+  <!--   {{ extension | json }} -->
+
+
+  <span *ngIf="node.info.allExtensions" class="mb-3">
+
+    <span class="" class="tree-button">
+      <a (click)="node.expand=true" class="fa fa-angle-double-down" [hidden]="node.expand"> </a>
+      <a (click)="node.expand=false" class="fa fa-angle-double-up" [hidden]="!node.expand"> </a>
     </span>
-    
-    <span *ngIf="node.values.length > 0">
-      
-      <ul *ngIf="node.isList">
-       <li *ngFor="let v of node.values; let i = index">
-         
-         <span *ngIf="node.isList" class="tree-box tree-value">
-           {{node.name}}[{{ i }}]           
-         </span>
-         
-         <span *ngIf="node.info.isSimple">          
-           <input type="text"  [(ngModel)]="v._value" placeholder="Values">
-         </span>
-    
-    	 <span>
-      		<a (click)="delete(i)" class="fa fa-minus-square-o"> </a>
-    	 </span>
-         
-         <ul *ngIf="node.info.isComplex">
-            <li *ngFor="let k of v | keysNoType">
-               <app-object-tree [node]="v[k]" root="false"></app-object-tree>
-   		    </li>   		    	
-         </ul>
 
-       </li>
-      </ul> 
-      
-         <span *ngIf="!node.isList">
-           <span *ngFor="let v of node.values; let i = index">
+    <select #abc (change)="setExtension(abc.value)" class="tree-select custom-select" [hidden]="!node.expand">
+      <option value="">
+        {{ node.typeName }} {{node.typeNamespace }}
+      </option>
+      <option *ngFor="let e of node.info.allExtensions; let i = index" [value]="i">
+        {{e.name }} {{e.namespace }}
+      </option>
+    </select>
+  </span>
 
-            <span *ngIf="node.info.isSimple">          
-             <input type="text"  [(ngModel)]="v._value" placeholder="Values">
-            </span>
+  <span *ngIf="node.isList || (node.values.length == 0)">
+    <a (click)="expand()" class="fa fa-plus-square-o"> </a>
+  </span>
 
-	    	 <span>
-    	  		<a (click)="delete(i)" class="fa fa-minus-square-o"> </a>
-    		 </span>
-         
-           <ul *ngIf="node.info.isComplex">
-            <li *ngFor="let k of v | keysNoType">
-               
-               <app-object-tree [node]="v[k]" root="false"></app-object-tree>
-               
-   		    </li>	    	
-           </ul>
-          </span>      
-         </span>
-          
-    </span>   
- 
-<!-- <ul> -->
-<!--   <li *ngFor="let p of node.properties"> -->
-<!--     {{ p.name }} -->
-    
-<!--     <div *ngIf="_value"> -->
-<!--       <a (click)="delete(node,p)" class="fa fa-plus-minus-o"> </a> -->
-<!--     </div> -->
-    
-<!--     <span *ngIf="p.isList || (node._value[p.name] === undefined)"> -->
-<!--       <a (click)="expand(node,p)" class="fa fa-plus-square-o"> </a> -->
-<!--     </span> -->
-    
-<!--   </li> -->
-<!-- </ul> -->
+  <span *ngIf="node.values.length > 0">
+
+    <ul *ngIf="node.isList">
+      <li *ngFor="let v of node.values; let i = index">
+
+        <span *ngIf="node.isList" class="tree-box tree-value">
+          {{node.name}}[{{ i }}]
+        </span>
+
+        <span *ngIf="node.info.isSimple">
+          <input type="text" [(ngModel)]="v._value" placeholder="Values">
+        </span>
+
+        <span>
+          <a (click)="delete(i)" class="fa fa-minus-square-o"> </a>
+        </span>
+
+        <ul *ngIf="node.info.isComplex">
+          <li *ngFor="let k of v | keysNoType">
+            <app-object-tree [node]="v[k]" root="false"></app-object-tree>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+
+    <span *ngIf="!node.isList">
+      <span *ngFor="let v of node.values; let i = index">
+
+        <span *ngIf="node.info.isSimple">
+          <input type="text" [(ngModel)]="v._value" placeholder="Values">
+        </span>
+
+        <span>
+          <a (click)="delete(i)" class="fa fa-minus-square-o"> </a>
+        </span>
+
+        <ul *ngIf="node.info.isComplex">
+          <li *ngFor="let k of v | keysNoType">
+
+            <app-object-tree [node]="v[k]" root="false"></app-object-tree>
+
+          </li>
+        </ul>
+      </span>
+    </span>
+
+  </span>
+
 </div>
-

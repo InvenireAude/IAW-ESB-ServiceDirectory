@@ -7,7 +7,7 @@
       Total messages: {{ numMessages }}
     </div>
 
-    <div class="col-md-12"  *ngIf="messages.length > 0">
+    <div class="col-md-12"  *ngIf="messages.length > 0" class="app-queue-browser">
       <table class="display table table-bordered table-striped app-fixed-table app-table">
         <tbody>
           <ng-container *ngFor="let message of messages; let i=index;">
@@ -41,9 +41,9 @@
 
               <td colspan="2">
                 <span class="pull-right">
-                  <app-download-content [data]="message.rawContent" dataType="json" [fileName]="'MSG_'+message.context.MID"></app-download-content>
+                  <app-download-content [data]="message.rawContent" [dataType]="message.context.FMT" [fileName]="'MSG_'+message.context.MID"></app-download-content>
                 </span>
-                <pre class="app-no-margin">{{message.rawContent}}</pre>
+                <pre class="app-no-margin app-msg-content">{{message.rawContent}}</pre>
               </td>
             </tr>
           </ng-container>

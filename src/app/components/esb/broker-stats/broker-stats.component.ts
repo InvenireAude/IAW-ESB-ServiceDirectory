@@ -8,7 +8,7 @@ import { QSystemService } from '../../../services/esb/qsystem.service';
 })
 export class BrokerStatsComponent implements OnInit {
 
-  private records: any[] = [];
+  public records: any[] = [];
 
   constructor(private qsystemService: QSystemService) { }
 

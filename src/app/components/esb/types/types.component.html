@@ -8,9 +8,9 @@
 
 				<div class="panel-body">
 					<div class="app-main-content">
-					<b>Namespace:</b> {{ (typeNamespace == '' ? "All Namespaces" : typeNamespace) }}				
-			  		   
-					<span class="pull-right"><a [routerLink]="['/types']" ng-show="(typeNamespace != '')"> Show all ...</a></span>					
+					<b>Namespace:</b> {{ (typeNamespace == '' ? "All Namespaces" : typeNamespace) }}
+
+					<span class="pull-right" *ngIf="typeNamespace"><a [routerLink]="['/types']" ng-show="(typeNamespace != '')"> Show all ...</a></span>
 
 						<table class="display table table-bordered table-striped app-fixed-table app-table"
 							id="table-types">

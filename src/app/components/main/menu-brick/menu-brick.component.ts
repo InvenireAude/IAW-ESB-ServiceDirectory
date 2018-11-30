@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MenuBrickComponent implements OnInit {
 
   @Input() name: string;
+  @Input() icon: string;
   @Input() url: string;
 
   constructor() { }

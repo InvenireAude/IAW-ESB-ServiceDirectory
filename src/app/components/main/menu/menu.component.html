@@ -1,12 +1,53 @@
-<div>
-  <h1>Main Menu</h1>
+<div class="container animated fadeIn">
 
-    <div class="row">
-    <app-menu-brick name="Applications"  url="/applications"></app-menu-brick>
-    <app-menu-brick name="Interfaces"  url="/interfaces"></app-menu-brick>
-    <app-menu-brick name="Namespaces"  url="/namespaces"></app-menu-brick>
-    <app-menu-brick name="Types"  url="/types"></app-menu-brick>
-    <app-menu-brick name="Statistics"  url="/systemStats"></app-menu-brick>
-    <app-menu-brick name="About"  url="/about"></app-menu-brick>
-   </div>
-</div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>Main Menu</h1>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border app-margin-bottom app-card ">
+        <div class="card-header app-header text-center app-grey">
+          <h4>Service Directory</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <app-menu-brick name="Applications" icon="fa-id-card-o" url="/applications"></app-menu-brick>
+            </div>
+            <div class="col-md-6">
+                <app-menu-brick name="Types" icon="fa-folder-open-o" url="/types"></app-menu-brick>
+              </div>
+            <div class="col-md-6">
+              <app-menu-brick name="Interfaces" icon="fa-handshake-o" url="/interfaces"></app-menu-brick>
+            </div>
+           <div class="col-md-6">
+              <app-menu-brick name="Namespaces" icon="fa-folder-o" url="/namespaces"></app-menu-brick>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border app-margin-bottom app-card ">
+        <div class="card-header app-header text-center app-grey">
+          <h4>Deployment</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <app-menu-brick name="Broker" icon="fa-random" url="/brokerStats"></app-menu-brick>
+            </div>
+            <div class="col-md-6">
+              <app-menu-brick name="Resources" icon="fa-microchip" url="/systemStats"></app-menu-brick>
+             </div>
+            <div class="col-md-6">
+              <app-menu-brick name="Service Manager" icon="fa-street-view" url="/smStatus"></app-menu-brick>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

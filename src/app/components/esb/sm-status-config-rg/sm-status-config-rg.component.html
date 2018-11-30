@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12">
+
+      <table class="display table table-bordered table-striped app-fixed-table app-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th colspan="2"><span class="text-center">Environment</span></th>
+                <th><span class="text-center">Count</span></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="filteredItems">
+                <tr>
+                    <th>
+                      <input type="text" name="name" (change)="applyFilters()" [(ngModel)]="filter.name" placeholder="Service">
+                    </th>
+                    <td colspan="4" class="text-right">
+                    </td>
+                  </tr>
+
+                    <ng-container  *ngFor="let r of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">
+
+                        <tr>
+                          <td [rowSpan]="r.env.vars.length ? r.env.vars.length : 1">{{ r.name }}</td>
+                          <td>{{r.env.vars[0].name}}</td>
+                          <td><small>{{r.env.vars[0].value}}</small></td>
+                          <td [rowSpan]="r.env.vars.length ? r.env.vars.length : 1">
+                              {{ r.count }}
+                          </td>
+                        </tr>
+                        <tr *ngFor="let a of r.env.vars | slice: 1">
+                          <td>{{a.name}}</td>
+                          <td><small>{{a.value}}</small></td>
+                        </tr>
+                      </ng-container>
+
+
+            </tbody>
+          </table>
+    </div>
+</div>

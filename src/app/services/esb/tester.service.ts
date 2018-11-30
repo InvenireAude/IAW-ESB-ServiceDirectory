@@ -31,4 +31,29 @@ export class TesterService {
         return this.httpClient.get(fileName);
     }
 
+    convertToXML(data: string) {
+
+      return this.httpService.postRequest(
+        '/esb-sd/tester',
+        'http://www.invenireaude.com/esbsd/tester#Convert', {
+          dataFrom : data,
+          fmtFrom: 'JSON',
+          fmtTo: 'XML'
+        },
+        false);
+
+    }
+
+    convertToJSON(data: string) {
+
+      return this.httpService.postRequest(
+        '/esb-sd/tester',
+        'http://www.invenireaude.com/esbsd/tester#Convert', {
+          dataFrom : data,
+          fmtFrom: 'XML',
+          fmtTo: 'JSON'
+        },
+        false);
+
+    }
 }

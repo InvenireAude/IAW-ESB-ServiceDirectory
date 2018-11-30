@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-12">
+      <table class="display table table-bordered table-striped app-fixed-table app-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th><span class="text-center">Statuses</span></th>
+            <th colspan="1"><span class="text-center">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="response">
+          <tr>
+            <th class="width-50pct">
+              <input type="text" name="name" (change)="applyFilters()" [(ngModel)]="filter.name" placeholder="Service">
+            </th>
+            <td colspan="4" class="text-right">
+              <small *ngIf="counter">Page will refesh in {{ counter }}s.</small>
+            </td>
+          </tr>
+          <tr *ngFor="let s of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">
+            <td>{{ s.name }}</td>
+            <td>
+              <div class="text-center">
+              <span *ngFor="let st of s.statuses">
+                <span class="btn btn-sm" *ngIf="st=='Running'"><i class="fa fa-arrow-up app-color-green"></i></span>
+                <span class="btn btn-sm" *ngIf="st=='Stopped'"><i class="fa fa-arrow-down"></i></span>
+                <span class="btn btn-sm" *ngIf="st=='Error'"><i class="fa fa-warning app-color-red"></i></span>
+              </span>
+            </div>
+            </td>
+            <!--           <td>
+              <span class="btn btn-sm" (click)="callAction(s,'???')"><i class="fa fa-refresh"></i></span>
+            </td>
+   -->
+            <td>
+              <div class="text-center">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+                  <div class="btn-group mr-2" role="group">
+                    <button class="btn btn-success btn-sm" (click)="callAction(s,'start')" [disabled]="!actionsAllowed"><i
+                        class="fa fa-hand-pointer-o app-color-green1"></i></button>
+                  </div>
+                  <div class="btn-group mr-2" role="group">
+                    <button class="btn btn-danger btn-sm" (click)="callAction(s,'stop')" [disabled]="!actionsAllowed"> <i
+                        class="fa fa-hand-stop-o app-color-red1"></i></button>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-12">
+      <div class="text-center">
+        <ngb-pagination [pageSize]="itemsPerPage" [collectionSize]="length" [maxSize]="15" [rotate]="true" [(page)]="page"
+          [directionLinks]="true" [boundaryLinks]="true"></ngb-pagination>
+      </div>
+    </div>
+
+  </div>

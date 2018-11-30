@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12" *ngIf="config">
+    <h1>Service Manager Configuration</h1>
+  </div>
+
+  <div class="col-md-12">
+    <ngb-tabset>
+      <ngb-tab title="Statuses">
+        <ng-template ngbTabContent>
+          <app-sm-status-services>
+          </app-sm-status-services>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Services">
+        <ng-template ngbTabContent>
+          <app-sm-status-config [config]="config">
+          </app-sm-status-config>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Environment">
+          <ng-template ngbTabContent>
+            <app-sm-status-config-rg [config]="config">
+            </app-sm-status-config-rg>
+          </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+  </div>
+
+</div>

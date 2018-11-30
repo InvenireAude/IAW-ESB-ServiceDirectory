@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <table class="display table table-bordered table-striped1 app-fixed-table app-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th><span class="text-center" colspan="2">Attributes</span></th>
+          <th><span class="text-center">Command</span></th>
+          <th><span class="text-center">ResourceGroup</span></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredItems">
+        <tr>
+          <th>
+            <input type="text" name="name" (change)="applyFilters()" [(ngModel)]="filter.name" placeholder="Service">
+          </th>
+          <td colspan="4" class="text-right">
+          </td>
+        </tr>
+
+        <ng-container  *ngFor="let s of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">
+
+          <tr>
+            <td [rowSpan]="s.grpAttrs.length ? s.grpAttrs.length : 1">{{ s.name }}</td>
+            <td>{{s.grpAttrs[0].name}}</td>
+            <td>{{s.grpAttrs[0].value}}</td>
+            <td [rowSpan]="s.grpAttrs.length ? s.grpAttrs.length : 1">
+              <small>
+                {{ s.startCmd.exe }}
+                <span *ngFor="let a of s.startCmd.args">{{a}}</span>
+              </small>
+            </td>
+            <td [rowSpan]="s.grpAttrs.length ? s.grpAttrs.length : 1">{{ s.resGrp }}</td>
+          </tr>
+          <tr *ngFor="let a of s.grpAttrs | slice: 1">
+            <td>{{a.name}}</td>
+            <td>{{a.value}}</td>
+          </tr>
+        </ng-container>
+
+      </tbody>
+    </table>
+  </div>
+</div>

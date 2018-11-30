@@ -1,0 +1,86 @@
+/* Tree CSS */
+
+.tree li {
+  margin: 0px 0;
+
+list-style-type: none;
+  position: relative;
+padding: 15px 5px 0px 5px;
+}
+
+.tree li::before{
+  content: '';
+position: absolute;
+  top: 0;
+width: 1px;
+  height: 100%;
+right: auto;
+  left: -20px;
+border-left: 1px solid #ccc;
+  bottom: 50px;
+}
+.tree li::after{
+  content: '';
+position: absolute;
+  top: 30px;
+width: 25px;
+  height: 20px;
+right: auto;
+  left: -20px;
+border-top: 1px solid #ccc;
+}
+.tree-box{
+  display: inline-block;
+  margin-right: 3px;
+  border: 1px solid #ccc;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.tree-select{
+  padding-left: 2px;
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-right: 2px;
+  width: fit-content;
+  height: 2.5em;
+  font-size: 10px;
+}
+
+.tree > ul > li::before, .tree > ul > li::after{
+border: 0;
+}
+
+.tree li:last-child::before{
+    height: 30px;
+}
+
+.tree-button{
+  margin: 2px;
+}
+
+.tree-value {
+background:rgba(0, 0, 0, 0.03);
+color :rgba(0, 0, 0, 0.9);
+border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.tree-old li span:hover,
+.tree-old li span:hover~ul li span {
+background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+}
+
+.tree li span:hover+ul li::after,
+.tree li span:hover+ul li::before,
+.tree li span:hover+ul::before,
+.tree li span:hover+ul ul::before{
+border-color:  #94a0b4;
+}
+
+

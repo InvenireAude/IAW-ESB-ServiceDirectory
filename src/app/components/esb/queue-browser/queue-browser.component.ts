@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 export class QueueBrowserComponent implements OnInit {
 
   public messages = [];
-  private queue: string;
-  private system: string;
+  public queue: string;
+  public system: string;
 
   public page = 1;
   public itemsPerPage = 5;
 
-  private msgSizeLimit: number;
-  private numMessages = 0;
+  public msgSizeLimit: number;
+  public numMessages = 0;
   private sub: any;
 
   constructor(private qsystemService: QSystemService, private route: ActivatedRoute, private router: Router) { }

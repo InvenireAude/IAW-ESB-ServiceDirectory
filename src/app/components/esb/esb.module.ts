@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { ApplicationComponent } from './application/application.component';
 import { ApplicationsComponent } from './applications/applications.component';
 
+import { GeneralFilterPipe } from 'src/app/filters/general-filter.pipe';
+
+
 import { UiModule } from '../ui/ui.module';
 import { InterfaceComponent } from './interface/interface.component';
 import { InterfacesComponent } from './interfaces/interfaces.component';
@@ -23,9 +26,14 @@ import { SystemStatsMemoryComponent } from './system-stats-memory/system-stats-m
 import { SystemStatsMemoryManagerComponent } from './system-stats-memory-manager/system-stats-memory-manager.component';
 import { SystemStatsQueuesComponent } from './system-stats-queues/system-stats-queues.component';
 import { BrokerStatsComponent } from './broker-stats/broker-stats.component';
+import { SMStatusComponent } from './sm-status/sm-status.component';
+import { SmStatusServicesComponent } from './sm-status-services/sm-status-services.component';
+import { SmStatusConfigComponent } from './sm-status-config/sm-status-config.component';
+import { SmStatusConfigRgComponent } from './sm-status-config-rg/sm-status-config-rg.component';
 
 @NgModule({
   declarations: [
+    GeneralFilterPipe,
     ApplicationComponent,
     ApplicationsComponent,
     InterfaceComponent,
@@ -41,7 +49,11 @@ import { BrokerStatsComponent } from './broker-stats/broker-stats.component';
     SystemStatsMemoryComponent,
     SystemStatsMemoryManagerComponent,
     SystemStatsQueuesComponent,
-    BrokerStatsComponent
+    BrokerStatsComponent,
+    SMStatusComponent,
+    SmStatusServicesComponent,
+    SmStatusConfigComponent,
+    SmStatusConfigRgComponent
   ],
   imports: [
     CommonModule,

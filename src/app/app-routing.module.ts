@@ -15,6 +15,7 @@ import { CallComponent } from './components/esb/call/call.component';
 import { SystemStatsComponent } from './components/esb/system-stats/system-stats.component';
 import { QueueBrowserComponent } from './components/esb/queue-browser/queue-browser.component';
 import { BrokerStatsComponent } from './components/esb/broker-stats/broker-stats.component';
+import { SMStatusComponent } from './components/esb/sm-status/sm-status.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'call',       component: CallComponent  },
   { path: 'systemStats',       component: SystemStatsComponent  },
   { path: 'queueBrowser',       component: QueueBrowserComponent  },
-  { path: 'brokerStats',       component: BrokerStatsComponent  },
+  { path: 'brokerStats',        component: BrokerStatsComponent  },
+  { path: 'smStatus',           component: SMStatusComponent  },
   { path: 'about',   component: AboutComponent }
 ];
 

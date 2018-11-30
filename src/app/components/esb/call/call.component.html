@@ -32,8 +32,6 @@
         </div>
       </div>
 
-      <pre><code>{{ rootProperty1 | json }}</code></pre>
-
 
     </div>
   </div>
@@ -43,57 +41,101 @@
 
     <div class="col-md-6">
       <div class="card">
-        <div class="card-header">
+
+        <div class="card-header app-call-card-header">
           <div class="row">
 
-            <div class="col-md-8">
-              <h4>Request</h4>
+            <div class="col-md-4">
+              <h5>Request</h5>
+              <!-- <em><span *ngIf="lastFileName">File name: {{ lastFileName }}.</span></em> -->
             </div>
 
-            <div class="col-md-2">
-              <form>
-                <div class="form-group">
-                  <div class="col-sm-6">
-                    <label class="btn btn-sm app-btn-action">
-                      <i class="fa fa-upload"></i>
-                      <input type='file' class="form-control-plaintext" (change)="fileChanged($event)" style="display: none;">
+            <div class="col-md-8 text-center">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+                <div class="btn-group mr-2" role="group">
+                  <label class="btn btn-sm btn-secondary">
+                    <input type='file' class="form-control-plaintext" (change)="fileChanged($event)" style="display: none;">
+                    <i class="fa fa-upload"></i><small>Upload</small>
+                  </label>
+                </div>
+                <div class="btn-group mr-2" role="group">
+                    <label class="btn btn-sm btn-secondary" role="button" (click)="prepareOutput()">
+                      <i class="fa fa-gears"></i><small>Build</small>
                     </label>
                   </div>
+                <div class="btn-group mr-2" role="group">
+                    <label class="btn btn-sm btn-secondary" role="button" (click)="downloadXMLOutput()">
+                      <i class="fa fa-download"></i> <small>XML</small>
+                    </label>
+                  </div>
+                  <div class="btn-group mr-2" role="group">
+                    <label class="btn btn-sm btn-secondary" role="button" (click)="downloadJSONOutput()">
+                      <i class="fa fa-download"></i> <small>JSON</small>
+                    </label>
+                  </div>
+                <div class="btn-group mr-2" role="group">
+                  <label class="btn btn-sm btn-success" role="button" (click)="send()">
+                    <i class="fa fa-share"></i> <small>Send</small>
+                  </label>
                 </div>
-              </form>
+              </div>
             </div>
 
-            <div class="col-md-2">
-                <a class="btn btn-sm app-btn-send" role="button" (click)="send()">
-                  <a class="fa fa-share"></a>
-                </a>
-              </div>
-
           </div>
-
         </div>
 
         <div class="card-block fnt-smxx container-fluid">
+          <div class="row">
+            <div class="col-md-12">
 
-          <app-object-tree [node]="rootProperty" root="true" *ngIf="rootProperty"> </app-object-tree>
-          <div class="card">
-            <div class="well">
-              <pre><code>{{ output | json }}</code></pre>
+              <div class="app-object-tree-div">
+                <app-object-tree [node]="rootProperty" root="true" *ngIf="rootProperty"> </app-object-tree>
+              </div>
+
+              <div class="card">
+                <div class="well" *ngIf="output">
+                  <pre><code>{{ output | json }}</code></pre>
+                </div>
+              </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="card">
-        <div class="card-header">
-          <h4>Response</h4>
-          <span *ngIf="input" class="pull-right"> <a class="btn btn-success" role="button" (click)="download()"><i
-                class="fa fa-download"></i></a>
-          </span>
-          <span *ngIf="callElapsedTime">Elapsed time: {{ callElapsedTime }}ms.</span>
+
+
+        <div class="card-header app-call-card-header">
+          <div class="row">
+
+            <div class="col-md-8">
+              <h5>Response</h5>
+              <em><span *ngIf="callElapsedTime">Elapsed time: {{ callElapsedTime }}ms.</span></em>
+            </div>
+
+            <div class="col-md-4">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+                <div class="btn-group mr-2" role="group" *ngIf="input">
+                  <label class="btn btn-sm btn-secondary" role="button" (click)="downloadXML(input.data)">
+                    <i class="fa fa-download"></i> <small>XML</small>
+                  </label>
+                </div>
+                <div class="btn-group mr-2" role="group" *ngIf="input">
+                  <label class="btn btn-sm btn-secondary" role="button" (click)="downloadJSON(input.data)">
+                    <i class="fa fa-download"></i> <small>JSON</small>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+
+
         <div class="card-block" *ngIf="input">
           <div class="well fnt-smxx">
             <pre><code>{{ input.data | json }}</code></pre>

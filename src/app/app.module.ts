@@ -12,6 +12,7 @@ import { TypesService } from './services/esb/types.service';
 import { LangService } from './services/esb/lang.service';
 import { ServiceDirectoryService } from './services/esb/service-directory.service';
 import { QSystemService } from './services/esb/qsystem.service';
+import { SMService } from './services/esb/sm.service';
 import { TesterService } from './services/esb/tester.service';
 import { HttpService } from './services/http.service';
 import { LoaderService } from './services/loader.service';
@@ -24,7 +25,6 @@ import { MainModule } from './components/main/main.module';
 import { ESBModule } from './components/esb/esb.module';
 
 import { DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
-
 
 
 export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptions, loaderService: LoaderService) {
@@ -49,6 +49,7 @@ export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptio
     LangService,
     ServiceDirectoryService,
     QSystemService,
+    SMService,
     TesterService,
     LoaderService,
      {

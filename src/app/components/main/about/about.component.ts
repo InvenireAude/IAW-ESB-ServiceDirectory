@@ -17,11 +17,6 @@ export class AboutComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    const tmp = document.createElement('div');
-    const el = this.elementRef.nativeElement.cloneNode(true);
-
-    tmp.appendChild(el);
-    this.node = tmp.innerHTML;
   }
 
 }

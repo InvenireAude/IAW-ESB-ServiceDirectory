@@ -29,6 +29,7 @@ export class CallComponent implements OnInit {
   input: any;
 
   file: any;
+  public lastFileName: string;
 
   private callStartTime: number;
   public callElapsedTime: number;
@@ -152,7 +153,7 @@ export class CallComponent implements OnInit {
     return result;
   }
 
-  private prepareOutput() {
+  prepareOutput() {
     this.output = this.prepareValues(this.rootProperty);
   }
 
@@ -172,6 +173,7 @@ export class CallComponent implements OnInit {
 
   fileChanged(e) {
     this.file = e.target.files[0];
+    this.lastFileName = e.target.files[0].name;
     this.uploadDocument();
   }
 
@@ -268,28 +270,55 @@ export class CallComponent implements OnInit {
   }
 
   uploadDocument() {
-    console.log(this.rootProperty);
     const fileReader = new FileReader();
     fileReader.onload = (e) => {
-      // console.log(fileReader.result);
-      // console.log(fileReader.result.toString());
       const strValue = fileReader.result.toString();
-      this.rootProperty = this.buildTreeRoot(JSON.parse(strValue));
-      //   console.log(JSON.stringify(this.buildTreeRoot(JSON.parse(strValue))));
+      if (this.lastFileName.indexOf('.xml') > -1) {
+        this.testerService.convertToJSON(strValue).subscribe(
+          (result) => {
+            if (result.dataTo) {
+              this.rootProperty = this.buildTreeRoot(JSON.parse(result.dataTo));
+            }
+          });
+      } else {
+        this.rootProperty = this.buildTreeRoot(JSON.parse(strValue));
+      }
     };
     fileReader.readAsText(this.file);
   }
 
-  fakeValidateUserData() {
-    return of(this.input.data);
+  fakeValidateUserData(data) {
+    return of(data);
   }
 
-  download() {
-    this.fakeValidateUserData().subscribe((res) => {
+  public downloadJSONOutput() {
+    this.prepareOutput();
+    this.downloadJSON(this.output);
+  }
+
+  public downloadXMLOutput() {
+    this.prepareOutput();
+    this.downloadXML(this.output);
+  }
+
+  public downloadJSON(data) {
+    this.fakeValidateUserData(data).subscribe((res) => {
       this.dynamicDownloadByHtmlTag({
         fileName: this.rootProperty.typeName + '.json',
         text: JSON.stringify(res, null, 2)
       });
+    });
+  }
+
+  public downloadXML(data) {
+    this.fakeValidateUserData(data).subscribe((res) => {
+      this.testerService.convertToXML(JSON.stringify(res)).subscribe(
+        (result) => {
+          this.dynamicDownloadByHtmlTag({
+            fileName: this.rootProperty.typeName + '.xml',
+            text: result.dataTo
+          });
+        });
     });
   }
 
