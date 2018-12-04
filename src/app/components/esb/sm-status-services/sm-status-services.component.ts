@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SMService } from '../../../services/esb/sm.service';
 import { GeneralFilterPipe } from 'src/app/filters/general-filter.pipe';
+import { interval } from 'rxjs/observable/interval';
 
 @Component({
   selector: 'app-sm-status-services',
   templateUrl: './sm-status-services.component.html',
   styleUrls: ['./sm-status-services.component.css']
 })
-export class SmStatusServicesComponent implements OnInit {
+export class SmStatusServicesComponent implements OnInit, OnDestroy {
 
   public request = {};
   public response: any;
@@ -29,13 +30,21 @@ export class SmStatusServicesComponent implements OnInit {
 
   public generalFilterPipe: GeneralFilterPipe = new GeneralFilterPipe();
 
+  source = interval(1000);
+
   constructor(private smService: SMService) { }
 
   ngOnInit() {
     this.refresh();
-    this.interval = setInterval(() => {
+    this.interval = this.source.subscribe(() => {
       this.countDownToRefresh();
-    }, 1000);
+    });
+  }
+
+
+  ngOnDestroy() {
+    console.log('ondestroy 1!!');
+    this.interval.unsubscribe();
   }
 
   countDownToRefresh() {

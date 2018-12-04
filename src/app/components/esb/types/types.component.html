@@ -1,20 +1,20 @@
 <div class="container app-main-container">
-	<h1>Types list</h1>
+	<h1>Types</h1>
 
 	<div class="row" ng-show="types">
 		<div id="tab_qmgrs" class="col-sm-12">
 			<section class="panel">
-				<header class="panel-heading"> Types </header>
+        <header class="panel-heading"> <b>Namespace:</b> {{ (typeNamespace == '' ? "all" : typeNamespace) }}
+          <span class="pull-right" *ngIf="typeNamespace"><a [routerLink]="['/types']" ng-show="(typeNamespace != '')"> Show all ...</a></span>
+        </header>
 
 				<div class="panel-body">
 					<div class="app-main-content">
-					<b>Namespace:</b> {{ (typeNamespace == '' ? "All Namespaces" : typeNamespace) }}
 
-					<span class="pull-right" *ngIf="typeNamespace"><a [routerLink]="['/types']" ng-show="(typeNamespace != '')"> Show all ...</a></span>
 
-						<table class="display table table-bordered table-striped app-fixed-table app-table"
+						<table class="display table table-bordered1 table-striped app-fixed-table app-table"
 							id="table-types">
-							<thead>
+							<thead class="thead-dark">
 								<tr>
 									<th class="width-25pct">Type</th>
 									<th class="">Namespace</th>
@@ -24,7 +24,7 @@
 								 	<input type="text" name="type"  (change)="applyFilters()"  [(ngModel)]="filter.name" placeholder="Type">
 								 </th>
       							 <th><input [hidden]="typeNamespace != '' " type="text" name="namespace" (change)="applyFilters()" [(ngModel)]="filter.namespace" placeholder="Namespace"></th>
-                                </tr>
+                </tr>
 							</thead>
 							<tbody>
 							    <tr *ngFor="let t of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">

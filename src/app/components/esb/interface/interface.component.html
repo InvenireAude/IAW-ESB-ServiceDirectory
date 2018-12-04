@@ -1,93 +1,94 @@
 <div class="container app-main-container" *ngIf="interface">
-	<h1>Interfaces</h1>
+  <h1>{{ interface.id }}</h1>
+  <h4> Interface Description</h4>
+  <div class="row app-ma-4">
+    <div class="col-lg-12">
+      <h5 class="page-header">Details</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="display table table-bordered table-striped app-fixed-table app-table">
+        <tbody>
+          <tr>
+            <td> Namespace </td>
+            <td> <a [routerLink]="['/types', { ns: interface.namespace } ]">{{ interface.namespace }} </a></td>
+          </tr>
+          <tr>
+            <td> Mode </td>
+            <td> {{ interface.mode }}</td>
+          </tr>
+          <tr>
+            <td> Documentation </td>
+            <td> {{ interface.documentation }}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
 
-	<div class="row">
-		<div class="col-lg-12">
-			<h3 class="page-header">Interfaces</h3>
-		</div>
-	</div>
-	
-	<table class="display table table-bordered table-striped app-fixed-table app-table">					
-							<tbody>
-							  <tr>
-							   <td> Namespace </td>
-							   <td>  <a [routerLink]="['/types', { ns: interface.namespace } ]">{{ interface.namespace }} </a></td> 
-							  </tr>
-							  <tr>
-							   <td> Mode </td>
-							   <td> {{ interface.mode }}</td>
-							  </tr>
-							  <tr>
-							   <td> Documentation </td>
-							   <td> {{ interface.documentation }}</td>
-							  </tr>
-						</table>							
+  <div class="row">
+    <div class="col-lg-12">
+      <h5>Properties</h5>
+      <table class="display table table-bordered table-striped app-fixed-table app-table">
+        <tbody>
+          <tr *ngFor="let p of interface.properties">
+            <td> {{ p.name }} </td>
+            <td> {{ p.value }}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
 
- 	
-				
-				<h5>Properties</h5>	
-				<table class="display table table-bordered table-striped app-fixed-table app-table">					
-							<tbody>
-							  <tr *ngFor="let p of interface.properties">
-							   <td> {{ p.name }} </td>
-							   <td> {{ p.value }}</td> 
-							  </tr>
-							</table>
-				
-	<div class="row" ng-show="services">
-		<div id="tab_qmgrs" class="col-sm-12">
-			<section class="panel">
-				<header class="panel-heading"> List of services </header>
+  <div class="row app-ma-4">
+      <div class="col-md-8">
+        <h3 class="page-header">Service List</h3>
+      </div>
+      <div class="col-md-4">
+          <div class="input-group">
+              <input type="text" name="namespace" (change)="applyFilters()" [(ngModel)]="filter.name" placeholder="Service name">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+        </div>
+    </div>
 
-				<div class="panel-body">
-		  		   		
-		 		<div class="input-group">
-    		   		<input type="text" name="namespace" (change)="applyFilters()" [(ngModel)]="filter.name" placeholder="Service name">		
-   					<span class="input-group-btn">
-       				 <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
-    			   </span>
-				</div>
-		  		   				
-		  		  <div *ngFor="let s of filteredItems">
-		  		   
-		  		    <h4>{{ s.name }}</h4>
-		  		    
-		  		    <table class="display table table-bordered app-fixed-table app-table">
-<!-- 		  		      <tr> -->
-<!-- 		  		        <td>Name</td> -->
-<!-- 		  		        <td>{{ s.name }}</td> -->
-<!-- 		  		      </tr> -->
-		  		      <tr>
-		  		        <td>Type</td>
-		  		        <td><a [routerLink]="['/type', { type: s.typeName, ns: s.typeNamespace}  ]">{{ s.typeName }}</a></td>
-		  		      </tr>
-		  		      <tr>
-		  		        <td>Type Namespace</td>
-		  		        <td><a [routerLink]="['/types', { ns: s.typeNamespace } ]">{{ s.typeNamespace }} </a></td>
-		  		      </tr>
-		  		      <tr>
-		  		       <td colspan="2">{{ s.description }} </td>
-		  		      </tr>
-		  		      <tr>
-		  		        <td>Program</td>
-		  		        <td><a [routerLink]="['/program', { name: s.program } ]"><code>{{ s.program }}</code></a></td>
-		  		      </tr>
-		  		      
-		  		    </table>	
-		  		  </div> 		
-		  		  		
-<!-- 						<table class="display table table-bordered table-striped app-fixed-table app-table">							 -->
-<!-- 							<tbody> -->
-<!-- 							    <tr *ngFor="let s of filteredItems"> -->
-<!-- 									<td><a [routerLink]="['/program', { program: s.program} ]">{{ s.program }} </a></td> -->
-<!-- 								</tr> -->
-<!-- 							</tbody> -->
-<!-- 						</table> -->
-	
-				</div>
-			</section>
-		</div>
-	</div>
-							
-							
-</div>						
+  <div class="row" ng-show="services">
+    <div id="tab_qmgrs" class="col-sm-12">
+      <section class="panel">
+        <header class="panel-heading"> </header>
+
+        <div class="panel-body">
+
+
+
+          <div *ngFor="let s of filteredItems" class="app-ma-1">
+            <h4>{{ s.name }}</h4>
+            <table class="display table table-striped app-fixed-table app-table">
+              <tr>
+                <th>Type</th>
+                <td><a [routerLink]="['/type', { type: s.typeName, ns: s.typeNamespace}  ]">{{ s.typeName }}</a></td>
+              </tr>
+              <tr>
+                <th>Type Namespace</th>
+                <td><a [routerLink]="['/types', { ns: s.typeNamespace } ]">{{ s.typeNamespace }} </a></td>
+              </tr>
+              <tr>
+                <th>Program</th>
+                <td><a [routerLink]="['/program', { name: s.program } ]"><code>{{ s.program }}</code></a></td>
+              </tr>
+              <tr>
+                  <th>Description</th>
+                  <td><small>{{ s.description }} </small></td>
+              </tr>
+            </table>
+          </div>
+
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+</div>

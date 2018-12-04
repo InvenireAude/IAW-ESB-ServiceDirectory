@@ -5,3 +5,14 @@
 .app-call-card-header{
   min-height: 5em;
 }
+.app-no-bottom-m{
+  margin-bottom: 0;
+}
+
+code {
+  font-size: 90%;
+  background: none;
+}
+pre {
+  margin: 0;
+}

@@ -12,16 +12,22 @@ export class RouteTransformerDirective {
 
   @HostListener('click', ['$event'])
   public onClick(event) {
-    console.log('Event:' + event.target.tagName);
-    if (event.target.tagName === 'A') {
-      console.log('Event2:' + event.target.getAttribute('href'));
-      const tree: UrlTree  = this.router.parseUrl(event.target.getAttribute('href'));
+
+    let target = event.target;
+
+    if (target.tagName !== 'A') {
+      target = event.target.closest('a');
+    }
+    console.log(target.tagName);
+
+    if (target.tagName === 'A') {
+      console.log('Event2:' + target.getAttribute('href'));
+      const tree: UrlTree  = this.router.parseUrl(target.getAttribute('href'));
       const g: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
       const s: UrlSegment[] = g.segments;
       console.log(tree.root, JSON.stringify(s));
        this.router.navigate([ s[0].path, s[0].parameters ]);
       // this.router.navigate([event.target.getAttribute('href')]);
-
       event.preventDefault();
     } else {
       return;

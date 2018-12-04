@@ -145,3 +145,16 @@ code .ias-ys-ns{
 .app-no-margin{
   margin: 0px;
 }
+
+a {
+  color: royalblue;
+}
+
+a:hover {
+  color: royalblue;
+  font-weight: bolder;
+}
+
+table .app-no-bottom-m{
+  margin-bottom: 0;
+}

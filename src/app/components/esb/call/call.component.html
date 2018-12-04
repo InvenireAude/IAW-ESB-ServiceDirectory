@@ -1,5 +1,5 @@
 <div class="container-fluid app-main-container">
-  <h1>Test services</h1>
+  <h1>{{ service }}</h1>
 
   <div class="row" ng-show="serviceImpl">
 
@@ -7,22 +7,22 @@
 
       <div class="card">
         <div class="card-header">
-          <h4>Service: {{ service }}</h4>
+         <h5>Service Description</h5>
         </div>
         <div class="card-block">
 
-          <table class="display table table-bordered app-fixed-table app-table">
+          <table class="display table table-striped app-fixed-table app-table app-no-bottom-m">
             <tr>
-              <td>Application</td>
+              <th>Application</th>
               <td><a [routerLink]="['/application', { id:application, ii: interface, im: 'Client' }  ]">{{ application
                   }}</a></td>
             </tr>
             <tr>
-              <td>Interface</td>
+              <th>Interface</th>
               <td><a [routerLink]="['/interface', { id: interface } ]">{{ interface }} </a></td>
             </tr>
             <tr>
-              <td>Program</td>
+              <th>Program</th>
               <td><a [routerLink]="['/program', { name: serviceImpl.program } ]"><code>{{ serviceImpl.program }}</code></a></td>
             </tr>
 

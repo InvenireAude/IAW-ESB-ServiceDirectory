@@ -1,16 +1,16 @@
 <div class="container app-main-container" *ngIf="application">
-	<h1>Application</h1>
+	<h1>{{ application.id }} {{ application.fullName }}</h1>
 
 	<div class="row">
-		<div class="col-lg-12">
-			<h3 class="page-header">Application : {{ application.fullName }}</h3>
-		</div>
-	</div>
+      <div class="col-lg-12">
+          <h3 class="page-header">Application Interfaces</h3>
+        </div>
+      </div>
 
  <app-accordion>
-    <app-accordion-group heading="{{ ii.id }} - {{ ii.mode }}" *ngFor="let ii of application.interfaceInstances" [_isOpen]="ii.isOpen"> 
- 					<table class="display table table-bordered table-striped app-fixed-table app-table">					
-								<thead>
+    <app-accordion-group heading="{{ ii.id }} - {{ ii.mode }}" *ngFor="let ii of application.interfaceInstances" [_isOpen]="ii.isOpen">
+ 					<table class="display table table-striped app-fixed-table app-table app-no-bottom-m">
+								<thead class="thead-dark">
 								  <tr>
 									    <th>Service Name</th>
 									    <th>Action</th>
@@ -19,16 +19,16 @@
 								<tbody>
 								 <tr *ngFor="let s of ii.services">
 									<td>{{ s.name }}</td>
-										<td>
+										<td class="width-25pct">
 										  <span [hidden]="ii.mode != 'Client'">
 										    <a [routerLink]="['/call', { app: application.id, ii: ii.id, svc: s.name } ]"><i class="fa fa-bug"></i> Test it ...</a>
 										  </span>
 										  </td>
 										 </tr>
 									</tbody>
-								</table>							
+								</table>
 		</app-accordion-group>
 	</app-accordion>
-		
+
 <!-- 	{{ application | json }} -->
-</div>		
+</div>
