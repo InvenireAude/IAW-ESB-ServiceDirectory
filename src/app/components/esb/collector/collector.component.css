@@ -1,0 +1,9 @@
+.app-msg-browser {
+  font-family: courier;
+  font-size: 80%;
+}
+.app-msg-content {
+  font-size: 90%;
+  max-width: 80em;
+  max-height: 60em;
+}

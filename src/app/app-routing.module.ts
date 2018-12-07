@@ -16,6 +16,7 @@ import { SystemStatsComponent } from './components/esb/system-stats/system-stats
 import { QueueBrowserComponent } from './components/esb/queue-browser/queue-browser.component';
 import { BrokerStatsComponent } from './components/esb/broker-stats/broker-stats.component';
 import { SMStatusComponent } from './components/esb/sm-status/sm-status.component';
+import { CollectorComponent } from './components/esb/collector/collector.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'menu', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'queueBrowser',       component: QueueBrowserComponent  },
   { path: 'brokerStats',        component: BrokerStatsComponent  },
   { path: 'smStatus',           component: SMStatusComponent  },
+  { path: 'collector',           component: CollectorComponent  },
   { path: 'about',   component: AboutComponent }
 ];
 

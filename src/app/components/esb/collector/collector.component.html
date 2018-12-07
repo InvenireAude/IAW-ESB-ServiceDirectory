@@ -1,0 +1,71 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <input type="text" ngbDatepicker #tsBeginFrom="ngbDatepicker" [(ngModel)]="dsBeginFrom" />
+      <button (click)="tsBeginFrom.toggle()">Toggle</button>
+      <ngb-timepicker [(ngModel)]="timeBeginFrom"></ngb-timepicker>
+    </div>
+    <div class="col-md-6">
+      <input type="text" ngbDatepicker #tsBeginFrom="ngbDatepicker" [(ngModel)]="dsBeginTo" />
+      <button (click)="tsBeginTo.toggle()">Toggle</button>
+      <ngb-timepicker [(ngModel)]="timeBeginTo"></ngb-timepicker>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="messages.length > 0" class="app-msg-browser">
+    <div class="col-md-12">
+      <table class="display table app-fixed-table app-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>TS</th>
+            <th>Id</th>
+            <th>Interface</th>
+            <th>Service</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Elapsed Time</th>
+            <th>
+               Show
+            </th>
+          <tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let m of messages">
+            <tr>
+              <td>{{ m.tsBegin | date:'yyyy-MM-dd hh:mm:ss'  }}</td>
+              <td>{{ m.refId   }}</td>
+              <td>{{ m.interface }}</td>
+              <td>{{ m.service }}</td>
+              <td>{{ m.srcAppl }}</td>
+              <td>{{ m.dstAppl }}</td>
+              <td>{{ m.svcTime }}</td>
+              <td>
+                <div class="btn btn-sm" (click)="show(m)">
+                  <i class="fa fa-plus"  *ngIf="!m.show"></i>
+                  <i class="fa fa-minus" *ngIf="m.show"></i>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="m.request && m.show">
+              <td colspan="1">Request</td>
+              <td colspan="7"><span class="pull-right">
+                  <app-download-content [data]="m.response" [dataType]="m.type" [fileName]="'req_'+m.refId"></app-download-content>
+                </span>
+                <pre class="app-no-margin app-msg-content">{{m.request}}</pre></td>
+            </tr>
+            <tr *ngIf="m.response && m.show">
+              <td colspan="1">Response</td>
+              <td colspan="7"><span class="pull-right">
+                  <app-download-content [data]="m.response" [dataType]="m.type" [fileName]="'res_'+m.refId"></app-download-content>
+                </span>
+                <pre class="app-no-margin app-msg-content">{{m.response}}</pre></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <button (click)="send()">send it !</button>
+</div>

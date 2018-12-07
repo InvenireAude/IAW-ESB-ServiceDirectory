@@ -30,6 +30,7 @@ import { SMStatusComponent } from './sm-status/sm-status.component';
 import { SmStatusServicesComponent } from './sm-status-services/sm-status-services.component';
 import { SmStatusConfigComponent } from './sm-status-config/sm-status-config.component';
 import { SmStatusConfigRgComponent } from './sm-status-config-rg/sm-status-config-rg.component';
+import { CollectorComponent } from './collector/collector.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SmStatusConfigRgComponent } from './sm-status-config-rg/sm-status-confi
     SMStatusComponent,
     SmStatusServicesComponent,
     SmStatusConfigComponent,
-    SmStatusConfigRgComponent
+    SmStatusConfigRgComponent,
+    CollectorComponent
   ],
   imports: [
     CommonModule,

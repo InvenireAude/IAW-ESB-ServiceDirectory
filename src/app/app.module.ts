@@ -9,6 +9,7 @@ import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TypesService } from './services/esb/types.service';
+import { CollectService } from './services/esb/collect.service';
 import { LangService } from './services/esb/lang.service';
 import { ServiceDirectoryService } from './services/esb/service-directory.service';
 import { QSystemService } from './services/esb/qsystem.service';
@@ -52,6 +53,7 @@ export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptio
     SMService,
     TesterService,
     LoaderService,
+    CollectService,
      {
           provide: HttpService,
           useFactory: backendFactory,
