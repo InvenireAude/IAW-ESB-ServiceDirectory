@@ -7,3 +7,53 @@
   max-width: 80em;
   max-height: 60em;
 }
+
+.form-inline label{
+  justify-content: left;
+}
+
+.form-inline select{
+  width: 65%;
+}
+
+.form-group{
+  margin: 0em;
+}
+
+.input-group {
+  padding: 0;
+  width: 80%;
+}
+
+.no-padding {
+  margin-left: 1px;
+  padding: 0;
+}
+
+.app-form-control-sm{
+  padding-top: 0.15rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.15rem;
+  padding-left: 0.25rem;
+  font-size: 75%;
+  height: 2.5em;
+  width: 30%;
+}
+
+.app-form-sm{
+  padding-top: 0.15rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.15rem;
+  padding-left: 0.25rem;
+  font-size: 75%;
+  height: 2.5em;
+}
+
+.app-form-inline{
+  display: flex;
+}
+
+.app-row-with-margin{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

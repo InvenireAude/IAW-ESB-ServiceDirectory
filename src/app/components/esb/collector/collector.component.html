@@ -1,18 +1,100 @@
 <div class="container">
 
-
   <div class="row">
-    <div class="col-md-6">
-      <input type="text" ngbDatepicker #tsBeginFrom="ngbDatepicker" [(ngModel)]="dsBeginFrom" />
-      <button (click)="tsBeginFrom.toggle()">Toggle</button>
-      <ngb-timepicker [(ngModel)]="timeBeginFrom"></ngb-timepicker>
+
+      <div class="col-md-6 form-group form-inline">
+          <label class="col-sm-4 col-form-label">ReferenceId:</label>
+          <input class="col-sm-8 form-control form-control-sm" [(ngModel)]="refId">
+      </div>
+
+      <div class="col-md-6 form-group form-inline">
+          <label class="col-sm-4 col-form-label">ParentId:</label>
+          <input class="col-sm-8 form-control form-control-sm" [(ngModel)]="parentId">
+      </div>
+
+    <div class="col-md-6 form-group form-inline">
+      <label class="col-sm-4 col-form-label">Source:</label>
+      <select class="col-sm-8 form-control" [(ngModel)]="srcAppl" name="srcAppl" class="custom-select custom-select-sm">
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let a of applications" [ngValue]="a.id">{{ a.id }}</option>
+      </select>
     </div>
-    <div class="col-md-6">
-      <input type="text" ngbDatepicker #tsBeginFrom="ngbDatepicker" [(ngModel)]="dsBeginTo" />
-      <button (click)="tsBeginTo.toggle()">Toggle</button>
-      <ngb-timepicker [(ngModel)]="timeBeginTo"></ngb-timepicker>
+
+    <div class="col-md-6 form-group form-inline">
+      <label class="col-sm-4 col-form-label">Destination:</label>
+      <select class="col-sm-8 form-control" [(ngModel)]="dstAppl" name="dstAppl" class="custom-select custom-select-sm">
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let a of applications" [ngValue]="a.id">{{ a.id }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 form-group form-inline">
+      <label class="col-sm-4 col-form-label">Interface:</label>
+      <select class="col-sm-8 form-control" [(ngModel)]="interface" name="interface" (change)="service=null" class="custom-select custom-select-sm">
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let i of interfaces" [ngValue]="i">{{ i.id }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 form-group form-inline">
+      <label class="col-sm-4 col-form-label">Service:</label>
+
+      <select class="col-sm-8 form-control" [(ngModel)]="service" name="service" *ngIf="interface" class="custom-select custom-select-sm">
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let s of interface.services" [ngValue]="s.name">{{ s.name }}</option>
+      </select>
+
+      <select class="col-sm-8 form-control" [(ngModel)]="service" name="service" *ngIf="!interface" class="custom-select custom-select-sm">
+        <option [ngValue]="null">All</option>
+      </select>
+
     </div>
   </div>
+
+  <div class="row">
+
+    <div class="col-md-6 form-group app-form-inline">
+      <label class="col-sm-4 col-form-label">From:</label>
+
+      <div class="col-sm-8 form-row no-padding">
+        <div class="input-group">
+          <input class="form-control app-form-control-sm" type="text" ngbDatepicker #tsBeginFrom="ngbDatepicker"
+            [(ngModel)]="dsBeginFrom" name="dsBeginFrom" />
+          <div (click)="tsBeginFrom.toggle()" class="input-group-text app-form-sm"><i class="fa fa-calendar"></i></div>
+        </div>
+        <div class="input-group">
+          <ngb-timepicker [(ngModel)]="timeBeginFrom" [size]="'small'" style="font-size:60%;"></ngb-timepicker>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 form-group app-form-inline">
+      <label class="col-sm-4 col-form-label">To:</label>
+
+      <div class="col-sm-8 form-row no-padding">
+        <div class="input-group">
+          <input class="form-control app-form-control-sm" type="text" ngbDatepicker #tsBeginTo="ngbDatepicker"
+            [(ngModel)]="dsBeginTo" name="dsBeginTo" />
+          <div (click)="tsBeginTo.toggle()" class="input-group-text app-form-sm"><i class="fa fa-calendar"></i></div>
+        </div>
+        <div class="input-group">
+          <ngb-timepicker [(ngModel)]="timeBeginTo" [size]="'small'" style="font-size:60%;"></ngb-timepicker>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="row app-row-with-margin">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+      <button (click)="send()" class="btn btn-success btn-sm">Send it <i class="fa fa-hand-o-right"></i></button>
+    </div>
+  </div>
+
 
   <div class="row" *ngIf="messages.length > 0" class="app-msg-browser">
     <div class="col-md-12">
@@ -27,15 +109,15 @@
             <th>Destination</th>
             <th>Elapsed Time</th>
             <th>
-               Show
+              Show
             </th>
           <tr>
         </thead>
         <tbody>
           <ng-container *ngFor="let m of messages">
             <tr>
-              <td>{{ m.tsBegin | date:'yyyy-MM-dd hh:mm:ss'  }}</td>
-              <td>{{ m.refId   }}</td>
+              <td>{{ m.tsBegin | date:'yyyy-MM-dd hh:mm:ss' }}</td>
+              <td>{{ m.refId }}</td>
               <td>{{ m.interface }}</td>
               <td>{{ m.service }}</td>
               <td>{{ m.srcAppl }}</td>
@@ -43,7 +125,7 @@
               <td>{{ m.svcTime }}</td>
               <td>
                 <div class="btn btn-sm" (click)="show(m)">
-                  <i class="fa fa-plus"  *ngIf="!m.show"></i>
+                  <i class="fa fa-plus" *ngIf="!m.show"></i>
                   <i class="fa fa-minus" *ngIf="m.show"></i>
                 </div>
               </td>
@@ -53,19 +135,22 @@
               <td colspan="7"><span class="pull-right">
                   <app-download-content [data]="m.response" [dataType]="m.type" [fileName]="'req_'+m.refId"></app-download-content>
                 </span>
-                <pre class="app-no-margin app-msg-content">{{m.request}}</pre></td>
+                <pre class="app-no-margin app-msg-content">{{m.request}}</pre>
+              </td>
             </tr>
             <tr *ngIf="m.response && m.show">
               <td colspan="1">Response</td>
               <td colspan="7"><span class="pull-right">
                   <app-download-content [data]="m.response" [dataType]="m.type" [fileName]="'res_'+m.refId"></app-download-content>
                 </span>
-                <pre class="app-no-margin app-msg-content">{{m.response}}</pre></td>
+                <pre class="app-no-margin app-msg-content">{{m.response}}</pre>
+              </td>
             </tr>
           </ng-container>
         </tbody>
       </table>
     </div>
   </div>
-  <button (click)="send()">send it !</button>
+
+
 </div>
