@@ -87,7 +87,7 @@ export class Lexer {
   },
 
 
-  '[;\.]': function (text) {
+  '[;\.,_]': function (text) {
    return {
     token: 'SEMICOLONANDDOT',
     value: text

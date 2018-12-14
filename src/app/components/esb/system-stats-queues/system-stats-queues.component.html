@@ -1,10 +1,10 @@
 <div class="row">
 
     <div class="col-md-12">
-      <table class="display table table-bordered table-striped app-fixed-table app-table">
+      <table class="display table table-bordered table-striped app-fixed-table app-table app-queue-table">
         <thead>
           <tr>
-            <th rowspan="2" class="width-25pct">Queue</th>
+            <th rowspan="2" class="app-col-name">Queue</th>
             <th colspan="3" class=""><span class="text-center">Messages</span></th>
             <th rowspan="2">Handlers</th>
             <th colspan="4" class=""><span class="text-center">Puts</span></th>
@@ -43,10 +43,8 @@
         <tbody>
           <ng-container *ngFor="let q of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">
             <tr>
-              <td class="width-25pct"><a [routerLink]="['/queueBrowser', { queue: q.name, system: registryAlias}  ]">{{
-                  q.name }} </a>
-
-                  <ngb-progressbar [value]="100 * 10 * q.numMsgs / q.size"></ngb-progressbar>
+              <td class="app-col-name"><a [routerLink]="['/queueBrowser', { queue: q.name, system: registryAlias}  ]">{{ q.name }} </a>
+                  <app-progress-bar [percent]="100 * q.numMsgs / q.size"></app-progress-bar>
                 </td>
 
               <td>{{ q.numMsgs }}</td>

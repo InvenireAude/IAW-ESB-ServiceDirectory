@@ -15,6 +15,7 @@ import { ObjectTreeComponent } from './object-tree/object-tree.component';
 import { KeysPipe } from '../../filters/keys-filter.pipe';
 import { KeysNoTypePipe } from '../../filters/keys-notype-filter.pipe';
 import { DownloadContentComponent } from './download-content/download-content.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DownloadContentComponent } from './download-content/download-content.co
     ObjectTreeComponent,
     KeysPipe,
     KeysNoTypePipe,
-    DownloadContentComponent
+    DownloadContentComponent,
+    ProgressBarComponent
   ],
   imports: [
     CommonModule,
@@ -45,6 +47,7 @@ import { DownloadContentComponent } from './download-content/download-content.co
     LoaderComponent,
     ObjectTreeComponent,
     DownloadContentComponent,
+    ProgressBarComponent,
     KeysPipe,
     KeysNoTypePipe
   ],

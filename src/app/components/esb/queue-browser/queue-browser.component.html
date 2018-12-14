@@ -7,7 +7,7 @@
       Total messages: {{ numMessages }}
     </div>
 
-    <div class="col-md-12"  *ngIf="messages.length > 0" class="app-queue-browser">
+    <div class="col-md-12 app-queue-browser"  *ngIf="messages.length > 0">
       <table class="display table table-bordered table-striped app-fixed-table app-table">
         <tbody>
           <ng-container *ngFor="let message of messages; let i=index;">
