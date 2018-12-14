@@ -10,6 +10,9 @@ export class BrokerStatsComponent implements OnInit {
 
   public records: any[] = [];
 
+  public chartData: any[] = [];
+  public chartLabels: any[] = [];
+
   constructor(private qsystemService: QSystemService) { }
 
   ngOnInit() {
@@ -18,6 +21,10 @@ export class BrokerStatsComponent implements OnInit {
         if (data.records !== undefined) {
           this.records = data.records;
           console.log(this.records.length);
+          this.records.forEach(r => {
+            this.chartLabels.push(r.key);
+            this.chartData.push(r.avg);
+          });
         }
       });
   }

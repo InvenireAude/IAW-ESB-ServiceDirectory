@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuBrickComponent } from './menu-brick/menu-brick.component';
+import { UiModule } from '../ui/ui.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MenuBrickComponent } from './menu-brick/menu-brick.component';
   ],
   imports: [
     CommonModule,
+    UiModule,
     RouterModule
   ],
   exports: [

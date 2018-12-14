@@ -16,6 +16,8 @@ import { KeysPipe } from '../../filters/keys-filter.pipe';
 import { KeysNoTypePipe } from '../../filters/keys-notype-filter.pipe';
 import { DownloadContentComponent } from './download-content/download-content.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { ChartLinesComponent } from './chart-lines/chart-lines.component';
+import { ChartBarsComponent } from './chart-bars/chart-bars.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     KeysPipe,
     KeysNoTypePipe,
     DownloadContentComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    ChartLinesComponent,
+    ChartBarsComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     ObjectTreeComponent,
     DownloadContentComponent,
     ProgressBarComponent,
+    ChartLinesComponent,
+    ChartBarsComponent,
     KeysPipe,
     KeysNoTypePipe
   ],
