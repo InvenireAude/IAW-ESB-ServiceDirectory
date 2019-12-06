@@ -1,8 +1,17 @@
 <div class="btn text-center">
-  <a [routerLink]="[ url ]" class="app-grey">
+
+  <a [routerLink]="[ url ]" class="app-grey" *ngIf="isEnabled">
         <span clas="text-center">
           <i class="fa fa-5x" [ngClass]="icon"></i>
           <h4>{{ name }}</h4>
         </span>
       </a>
+
+  <div class="app-disabled" *ngIf="!isEnabled">
+      <span clas="text-center">
+        <i class="fa fa-5x" [ngClass]="icon"></i>
+        <h4>{{ name }}</h4>
+      </span>
+    </div>
+
 </div>

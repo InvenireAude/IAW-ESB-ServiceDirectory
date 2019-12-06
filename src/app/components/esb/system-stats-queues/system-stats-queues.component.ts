@@ -31,7 +31,7 @@ export class SystemStatsQueuesComponent implements OnInit {
 
   public applyFilters() {
     if (this.queues) {
-      this.filteredItems = this.generalFilterPipe.transform(this.queues, this.filter);
+      this.filteredItems = this.generalFilterPipe.transform(this.queues, this.filter, null);
       this.length = this.filteredItems.length;
       this.page = 1;
     }

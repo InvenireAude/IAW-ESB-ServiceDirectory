@@ -15,6 +15,10 @@ export class RouteTransformerDirective {
 
     let target = event.target;
 
+    if (target === undefined || target == null) {
+     return;
+    }
+
     if (target.tagName !== 'A') {
       target = event.target.closest('a');
     }

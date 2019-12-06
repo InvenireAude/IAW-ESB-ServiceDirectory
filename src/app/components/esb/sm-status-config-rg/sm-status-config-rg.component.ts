@@ -35,7 +35,7 @@ export class SmStatusConfigRgComponent implements OnInit, OnChanges {
   public applyFilters() {
 
     if (this.config && this.config.deployment && this.config.deployment.resources) {
-      this.filteredItems = this.generalFilterPipe.transform(this.config.deployment.resources, this.filter);
+      this.filteredItems = this.generalFilterPipe.transform(this.config.deployment.resources, this.filter, null);
       this.length = this.filteredItems !== undefined ? this.filteredItems.length : 0;
       this.page = 1;
     }

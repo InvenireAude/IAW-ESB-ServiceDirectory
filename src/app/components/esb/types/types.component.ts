@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { TypesService } from '../../../services/esb/types.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { GeneralFilterPipe } from '../../../filters/general-filter.pipe';
 
 @Component({
   selector: 'app-types',
@@ -11,34 +9,29 @@ import { GeneralFilterPipe } from '../../../filters/general-filter.pipe';
   styleUrls: ['./types.component.css']
 })
 
-export class TypesComponent implements OnInit {
+export class TypesComponent implements OnInit, OnDestroy {
 
-  types: any[];
-  filteredItems: any[];
+  types$: any;
+
   private sub: any;
   typeNamespace = '';
 
-  public page = 1;
-  public itemsPerPage = 20;
-  public maxSize = 5;
-  public numPages = 1;
-  public length = 0;
-  public filter = {
-    name: null,
-    'namespace': null
+
+  public pagination = {
+    page : 1,
+    itemsPerPage : 20,
+    maxSize : 5,
+    numPages: 1,
+    length : 0
   };
 
-  public generalFilterPipe: GeneralFilterPipe = new GeneralFilterPipe();
+  public filter = {
+    name: null,
+    namespace: null
+  };
+
 
   constructor(private typesService: TypesService, private route: ActivatedRoute, private router: Router) { }
-
-  public applyFilters() {
-    if (this.types) {
-      this.filteredItems = this.generalFilterPipe.transform(this.types, this.filter);
-      this.length = this.filteredItems.length;
-      this.page = 1;
-    }
-  }
 
   ngOnInit() {
 
@@ -52,21 +45,27 @@ export class TypesComponent implements OnInit {
 
       this.filter = {
         name: null,
-        'namespace': this.typeNamespace
+        namespace: this.typeNamespace
       };
 
-      this.typesService.getTypes(this.typeNamespace).subscribe(
-        data => {
-          this.types = data.types;
-          this.applyFilters();
-          return true;
-        },
-        error => {
-          console.error('Error!');
-          // return Observable.throw(error);
-        }
+      this.pagination.page = 1;
+
+      this.types$ = this.typesService.getTypes(this.typeNamespace).map(
+        data => data.types.sort((a, b) => {
+          if ( a.name === b.name) {
+            return a.namespace.localeCompare(b.namespace);
+          } else {
+            return a.name.localeCompare(b.name);
+          }
+        })
       );
     });
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

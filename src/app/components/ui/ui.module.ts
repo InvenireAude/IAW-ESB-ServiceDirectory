@@ -18,6 +18,9 @@ import { DownloadContentComponent } from './download-content/download-content.co
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { ChartLinesComponent } from './chart-lines/chart-lines.component';
 import { ChartBarsComponent } from './chart-bars/chart-bars.component';
+import { GeneralTextFilterPipe } from 'src/app/filters/general-text-filter.pipe';
+import { GeneralFilterPipe } from 'src/app/filters/general-filter.pipe';
+import { ServiceStatusComponent } from './service-status/service-status.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { ChartBarsComponent } from './chart-bars/chart-bars.component';
     DownloadContentComponent,
     ProgressBarComponent,
     ChartLinesComponent,
-    ChartBarsComponent
+    ChartBarsComponent,
+    GeneralFilterPipe,
+    GeneralTextFilterPipe,
+    ServiceStatusComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +61,10 @@ import { ChartBarsComponent } from './chart-bars/chart-bars.component';
     ChartLinesComponent,
     ChartBarsComponent,
     KeysPipe,
-    KeysNoTypePipe
+    KeysNoTypePipe,
+    GeneralFilterPipe,
+    GeneralTextFilterPipe,
+    ServiceStatusComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

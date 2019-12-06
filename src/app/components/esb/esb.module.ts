@@ -8,9 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { ApplicationComponent } from './application/application.component';
 import { ApplicationsComponent } from './applications/applications.component';
 
-import { GeneralFilterPipe } from 'src/app/filters/general-filter.pipe';
-
-
 import { UiModule } from '../ui/ui.module';
 import { InterfaceComponent } from './interface/interface.component';
 import { InterfacesComponent } from './interfaces/interfaces.component';
@@ -31,10 +28,11 @@ import { SmStatusServicesComponent } from './sm-status-services/sm-status-servic
 import { SmStatusConfigComponent } from './sm-status-config/sm-status-config.component';
 import { SmStatusConfigRgComponent } from './sm-status-config-rg/sm-status-config-rg.component';
 import { CollectorComponent } from './collector/collector.component';
+import { ServicesComponent } from './services/services.component';
+import { ServiceItemComponent } from './service-item/service-item.component';
 
 @NgModule({
   declarations: [
-    GeneralFilterPipe,
     ApplicationComponent,
     ApplicationsComponent,
     InterfaceComponent,
@@ -55,7 +53,9 @@ import { CollectorComponent } from './collector/collector.component';
     SmStatusServicesComponent,
     SmStatusConfigComponent,
     SmStatusConfigRgComponent,
-    CollectorComponent
+    CollectorComponent,
+    ServicesComponent,
+    ServiceItemComponent
   ],
   imports: [
     CommonModule,

@@ -37,6 +37,24 @@ export class HttpService extends Http {
 
   cache: any = {};
 
+  getResource(context: string) {
+
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    console.log('get: ' + context);
+    return super.get(context, options)
+      .map((res: Response) => res.json())
+      .catch(this.onCatch)
+      .do((res: Response) => {
+        this.onSuccess(res);
+      }, (error: any) => {
+        this.onError(error);
+      })
+       .finally(() => {
+      });
+
+  }
+
   postRequest(apiContext: string, service: string, data: any, allowCache: boolean) {
 
 
@@ -88,7 +106,7 @@ export class HttpService extends Http {
   }
 
   private onError(res: Response): void {
-      console.log('Error, status code: ' + res.status);
+      console.log('Error, status code: ' + JSON.stringify(res));
   }
 
   private onEnd(): void {

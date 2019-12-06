@@ -1,11 +1,11 @@
 <div class="container animated fadeIn">
 
-  <div class="row">
+  <div class="row" *ngIf="config">
     <div class="col-md-12 text-center">
-      <h1>Main Menu</h1>
+      <h1>{{ config.title }}</h1>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="config">
       <div class="card border app-margin-bottom app-card ">
         <div class="card-header app-header text-center app-grey">
           <h4>Service Directory</h4>
@@ -13,23 +13,26 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <app-menu-brick name="Applications" icon="fa-id-card-o" url="/applications"></app-menu-brick>
+              <app-menu-brick name="Applications" icon="fa-id-card-o" url="/applications" [isEnabled]="config.hasDirectory"></app-menu-brick>
             </div>
             <div class="col-md-6">
-                <app-menu-brick name="Types" icon="fa-folder-open-o" url="/types"></app-menu-brick>
+                <app-menu-brick name="Types" icon="fa-folder-open-o" url="/types" [isEnabled]="config.hasDirectory"></app-menu-brick>
               </div>
             <div class="col-md-6">
-              <app-menu-brick name="Interfaces" icon="fa-handshake-o" url="/interfaces"></app-menu-brick>
+              <app-menu-brick name="Interfaces" icon="fa-handshake-o" url="/interfaces" [isEnabled]="config.hasDirectory"></app-menu-brick>
             </div>
            <div class="col-md-6">
-              <app-menu-brick name="Namespaces" icon="fa-folder-o" url="/namespaces"></app-menu-brick>
+              <app-menu-brick name="Namespaces" icon="fa-folder-o" url="/namespaces" [isEnabled]="config.hasDirectory"></app-menu-brick>
+            </div>
+            <div class="col-md-6">
+              <app-menu-brick name="Services" icon="fa-list-alt" url="/services" [isEnabled]="config.hasDirectory"></app-menu-brick>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="config">
       <div class="card border app-margin-bottom app-card ">
         <div class="card-header app-header text-center app-grey">
           <h4>Deployment</h4>
@@ -37,20 +40,21 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <app-menu-brick name="Broker" icon="fa-random" url="/brokerStats"></app-menu-brick>
+              <app-menu-brick name="Broker" icon="fa-random" url="/brokerStats" [isEnabled]="config.hasDeployment"></app-menu-brick>
             </div>
             <div class="col-md-6">
-              <app-menu-brick name="Resources" icon="fa-microchip" url="/systemStats"></app-menu-brick>
+              <app-menu-brick name="Resources" icon="fa-microchip" url="/systemStats" [isEnabled]="config.hasDeployment"></app-menu-brick>
              </div>
             <div class="col-md-6">
-              <app-menu-brick name="Service Manager" icon="fa-street-view" url="/smStatus"></app-menu-brick>
+              <app-menu-brick name="Service Manager" icon="fa-street-view" url="/smStatus" [isEnabled]="config.hasDeployment"></app-menu-brick>
             </div>
           <div class="col-md-6">
-            <app-menu-brick name="Call Collector" icon="fa-files-o" url="/collector"></app-menu-brick>
+            <app-menu-brick name="Call Collector" icon="fa-files-o" url="/collector" [isEnabled]="config.hasDeployment"></app-menu-brick>
           </div>
          </div>
         </div>
       </div>
     </div>
+
 
   </div>

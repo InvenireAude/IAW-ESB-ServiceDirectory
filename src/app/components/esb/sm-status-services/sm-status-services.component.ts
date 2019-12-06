@@ -87,7 +87,7 @@ export class SmStatusServicesComponent implements OnInit, OnDestroy {
 
   public applyFilters() {
     if (this.response.services) {
-      this.filteredItems = this.generalFilterPipe.transform(this.response.services, this.filter);
+      this.filteredItems = this.generalFilterPipe.transform(this.response.services, this.filter, null);
       this.length = this.filteredItems.length;
       this.page = 1;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -6,7 +6,7 @@ import { Chart } from 'chart.js';
   templateUrl: './chart-lines.component.html',
   styleUrls: ['./chart-lines.component.css']
 })
-export class ChartLinesComponent implements OnInit {
+export class ChartLinesComponent implements OnInit, AfterViewInit {
 
   private month = ['Jan', 'Feb', 'Mar'];
   private price = [4.2, 2, 1.3];
@@ -27,12 +27,19 @@ export class ChartLinesComponent implements OnInit {
     [77, 83, 96]
   ];
 
-  constructor() { }
 
+  @ViewChild('myId') myId: ElementRef;
+
+  constructor() {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.myId.nativeElement);
+  }
 
   ngOnInit() {
-
-    this.chart = new Chart('canvas123', {
+    return;
+    this.chart = new Chart(this.myId, {
       type: 'horizontalBar',
       data: {
         labels: this.month,

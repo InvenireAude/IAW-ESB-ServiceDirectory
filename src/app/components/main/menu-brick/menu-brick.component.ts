@@ -10,6 +10,7 @@ export class MenuBrickComponent implements OnInit {
   @Input() name: string;
   @Input() icon: string;
   @Input() url: string;
+  @Input() isEnabled: boolean;
 
   constructor() { }
 

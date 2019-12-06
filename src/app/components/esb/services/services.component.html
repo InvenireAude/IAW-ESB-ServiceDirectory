@@ -1,0 +1,71 @@
+<div class="container app-main-container">
+    <h1>Services</h1>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="panel">
+          <header class="panel-heading">
+            Services usage table
+          </header>
+
+          <div class="panel-body">
+            <div class="app-main-content">
+
+              <table class="display table table-bordered table-striped app-fixed-table app-table"
+                id="table-types">
+                <thead class="thead-dark">
+                  <tr>
+                    <th class="">Interface</th>
+                    <th class="">Service</th>
+                    <th class="">Provider</th>
+                    <th class="">Clients</th>
+                  </tr>
+                  <tr>
+                    <th class="width-25pct">
+                     <input type="text" name="interface" [(ngModel)]="filter.interface" placeholder="Interface">
+                    </th>
+                    <th>
+                      <input type="text" name="service" [(ngModel)]="filter.service" placeholder="Provider">
+                    </th>
+                    <th>
+                      <input type="text" name="provider" [(ngModel)]="filter.provider" placeholder="Provider">
+                    </th>
+                    <th>
+                      <input type="text" name="consumers" [(ngModel)]="filter.consumers" placeholder="Consumers">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of services$ | async | generalfilter : filter : pagination | slice:(pagination.page-1)*pagination.itemsPerPage:pagination.page*pagination.itemsPerPage">
+                    <!-- <td class="width-25pct"><a [routerLink]="['/type', { type: t.name, ns: t.namespace}  ]">{{ t.name }} </a></td>
+                    <td><a [routerLink]="['/types', { ns: t.namespace} ]">{{ t.namespace }} </a></td> -->
+                    <td>
+                        <a [routerLink]="['/interface', { id: i.interface  }]">{{ i.interface }}</a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/interface', { id: i.interface, service: i.service  }]">{{ i.service }}</a>
+                    </td>
+                    <td>
+                        <a [routerLink]="['/application', { id: i.provider  }]">{{ i.provider }}</a>
+                    </td>
+                    <td>
+                      <ul>
+                        <li *ngFor="let c of i.consumers">
+                            <a [routerLink]="['/application', { id: c  }]">{{ c }}</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <div class="text-center">
+             <ngb-pagination  [pageSize]="pagination.itemsPerPage" [collectionSize]="pagination.length" [maxSize]="15" [rotate]="true" [(page)]="pagination.page" [directionLinks]="true"  [boundaryLinks]="true"></ngb-pagination>
+          </div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </div>

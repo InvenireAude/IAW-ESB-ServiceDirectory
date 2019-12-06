@@ -9,21 +9,31 @@ import { ServiceDirectoryService } from '../../../services/esb/service-directory
 })
 export class ApplicationsComponent implements OnInit {
 
-  constructor(private serviceDirectoryService: ServiceDirectoryService) { }
+  applications$: any;
 
-  applications: any[];
+  public pagination = {
+    page : 1,
+    itemsPerPage : 20,
+    maxSize : 5,
+    numPages: 1,
+    length : 0
+  };
+
+  public filter = {
+    id : null,
+    fullName: null
+  };
+
+  constructor(
+    private serviceDirectoryService: ServiceDirectoryService
+    ) { }
 
   ngOnInit() {
-    this.serviceDirectoryService.getApplications().subscribe(
-      data => {
-        this.applications = data.applications;
-        return true;
-      },
-      error => {
-        console.error('Error!');
-        // return Observable.throw(error);
-      }
-    );
+    this.applications$ = this.serviceDirectoryService.getApplications().map(
+        data => data.applications.sort((a, b) => {
+            return a.id.localeCompare(b.id);
+        })
+     );
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -6,7 +6,7 @@ import { Chart } from 'chart.js';
   templateUrl: './chart-bars.component.html',
   styleUrls: ['./chart-bars.component.css']
 })
-export class ChartBarsComponent implements OnInit {
+export class ChartBarsComponent implements OnInit, AfterViewInit {
 
   @Input() data: any[] = [];
   @Input() labels: any[] = [];
@@ -17,11 +17,11 @@ export class ChartBarsComponent implements OnInit {
   public defaultColors = [
     [255, 99, 132],
     [54, 162, 235],
-    [255, 206, 86],
     [231, 233, 237],
     [75, 192, 192],
-    [151, 187, 205],
     [220, 220, 220],
+    [255, 206, 86],
+    [151, 187, 205],
     [247, 70, 74],
     [70, 191, 189],
     [253, 180, 92],
@@ -29,19 +29,22 @@ export class ChartBarsComponent implements OnInit {
     [77, 83, 96]
   ];
 
-  constructor() {
-    }
+  @ViewChild('myId') myId: ElementRef;
 
+  constructor() {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.myId.nativeElement);
+  }
 
   ngOnInit() {
-
-    console.log(this.data);
 
     for (let i = 0; i < this.data.length; i++) {
       this.colors.push(this.getColor(i));
     }
 
-    this.chart = new Chart('canvas321', {
+    this.chart = new Chart(this.myId.nativeElement, {
       type: 'horizontalBar',
       data: {
         labels: this.labels,

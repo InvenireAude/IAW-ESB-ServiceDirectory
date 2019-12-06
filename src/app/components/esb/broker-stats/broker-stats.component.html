@@ -5,9 +5,13 @@
       <h1>Broker Statistics</h1>
     </div>
 
-    <div class="col-md-12" *ngIf="records.length > 0">
-      <app-chart-bars [data]="chartData" [labels]="chartLabels"></app-chart-bars>
+    <div class="col-md-6" *ngIf="records.length > 0">
+      <app-chart-bars [data]="chartDataAvg" [labels]="chartLabels"></app-chart-bars>
     </div>
+    <div class="col-md-6" *ngIf="records.length > 0">
+      <app-chart-bars [data]="chartDataCount" [labels]="chartLabels"></app-chart-bars>
+    </div>
+
     Current snapshot of last 15s.
     <div class="col-md-12" *ngIf="records.length > 0">
         <table class="display table table-bordered table-striped app-fixed-table app-table text-right">

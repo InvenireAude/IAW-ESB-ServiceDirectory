@@ -1,7 +1,7 @@
 <div class="container app-main-container">
 	<h1>Types</h1>
 
-	<div class="row" ng-show="types">
+	<div class="row">
 		<div id="tab_qmgrs" class="col-sm-12">
 			<section class="panel">
         <header class="panel-heading"> <b>Namespace:</b> {{ (typeNamespace == '' ? "all" : typeNamespace) }}
@@ -11,8 +11,7 @@
 				<div class="panel-body">
 					<div class="app-main-content">
 
-
-						<table class="display table table-bordered1 table-striped app-fixed-table app-table"
+						<table class="display table table-bordered table-striped app-fixed-table app-table"
 							id="table-types">
 							<thead class="thead-dark">
 								<tr>
@@ -21,13 +20,14 @@
 								</tr>
 								<tr>
 								 <th class="width-25pct">
-								 	<input type="text" name="type"  (change)="applyFilters()"  [(ngModel)]="filter.name" placeholder="Type">
+								 	<input type="text" name="type" [(ngModel)]="filter.name" placeholder="Type">
 								 </th>
-      							 <th><input [hidden]="typeNamespace != '' " type="text" name="namespace" (change)="applyFilters()" [(ngModel)]="filter.namespace" placeholder="Namespace"></th>
+      					 <th>
+                   <input [hidden]="typeNamespace != '' " type="text" name="namespace" [(ngModel)]="filter.namespace" placeholder="Namespace"></th>
                 </tr>
 							</thead>
 							<tbody>
-							    <tr *ngFor="let t of filteredItems | slice:(page-1)*itemsPerPage:page*itemsPerPage">
+							    <tr *ngFor="let t of types$ | async | generalfilter : filter : pagination | slice:(pagination.page-1)*pagination.itemsPerPage:pagination.page*pagination.itemsPerPage">
 									<td class="width-25pct"><a [routerLink]="['/type', { type: t.name, ns: t.namespace}  ]">{{ t.name }} </a></td>
 									<td><a [routerLink]="['/types', { ns: t.namespace} ]">{{ t.namespace }} </a></td>
 								</tr>
@@ -35,7 +35,7 @@
 						</table>
 					</div>
 				<div class="text-center">
-					 <ngb-pagination  [pageSize]="itemsPerPage" [collectionSize]="length" [maxSize]="15" [rotate]="true" [(page)]="page" [directionLinks]="true"  [boundaryLinks]="true"></ngb-pagination>
+					 <ngb-pagination  [pageSize]="pagination.itemsPerPage" [collectionSize]="pagination.length" [maxSize]="15" [rotate]="true" [(page)]="pagination.page" [directionLinks]="true"  [boundaryLinks]="true"></ngb-pagination>
 				</div>
 
 				</div>

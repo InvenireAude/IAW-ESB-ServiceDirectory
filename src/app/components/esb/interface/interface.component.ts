@@ -5,6 +5,8 @@ import { ServiceDirectoryService } from '../../../services/esb/service-directory
 import { TypesService } from '../../../services/esb/types.service';
 import { GeneralFilterPipe } from '../../../filters/general-filter.pipe';
 
+import { DomSanitizer, SafeHtml} from '@angular/platform-browser';
+
 
 @Component({
     selector: 'app-interface',
@@ -14,10 +16,21 @@ import { GeneralFilterPipe } from '../../../filters/general-filter.pipe';
 export class InterfaceComponent implements OnInit, OnDestroy {
 
     interface: any;
-    services: any[] = [];
+    services$: any;
+
     sub: any;
     id: string;
-    filteredItems: any[] = [];
+
+    public  content: SafeHtml;
+
+    public pagination = {
+      page : 1,
+      itemsPerPage : 5,
+      maxSize : 5,
+      numPages: 1,
+      length : 0
+    };
+
     public filter = {
         name: null
     };
@@ -26,46 +39,45 @@ export class InterfaceComponent implements OnInit, OnDestroy {
 
     constructor(private typesService: TypesService,
                 private serviceDirectoryService: ServiceDirectoryService,
+                private sanitizer: DomSanitizer,
                 private route: ActivatedRoute, private router: Router) { }
-
-    public applyFilters() {
-        if (this.services) {
-            this.filteredItems = this.generalFilterPipe.transform(this.services, this.filter);
-        }
-    }
-
 
 
     ngOnInit() {
+
         this.sub = this.route.params.subscribe(params => {
-            this.id = params['id'];
+           this.id = params['id'];
+           this.filter.name = params['service'];
 
             this.serviceDirectoryService.getInterface(this.id).subscribe(
                 data => {
-
                     if (data.interfaces) {
-
-                        this.interface = data.interfaces[0];
-                        this.typesService.getTypeAsService(this.interface.namespace).subscribe(
+                        this.services$ = this.typesService.getTypeAsService(data.interfaces[0].namespace).map(
                             result => {
                                 if (result.response) {
+                                    const services = [];
                                     result.response.properties.forEach(p => {
-                                        this.services.push(p);
+                                        p.content = this.sanitizer.bypassSecurityTrustHtml(p.description);
+                                        services.push(p);
                                     });
-                                    this.applyFilters();
+                                    services.sort((a, b) => {
+                                      return a.name.localeCompare(b.name);
+                                    });
+                                    return services;
                                 }
                             });
+                      this.interface = data.interfaces[0];
+                    } else {
+                      this.interface = undefined;
                     }
-                    return true;
-                },
-                error => {
-                    console.error('Error!');
-                    // return Observable.throw(error);
                 });
-        });
+          });
     }
 
     ngOnDestroy() {
+      if (this.sub) {
         this.sub.unsubscribe();
+      }
     }
+
 }

@@ -35,7 +35,7 @@ export class SmStatusConfigComponent implements OnInit, OnChanges {
 
   public applyFilters() {
     if (this.config && this.config.service && this.config.service.services) {
-      this.filteredItems = this.generalFilterPipe.transform(this.config.service.services, this.filter);
+      this.filteredItems = this.generalFilterPipe.transform(this.config.service.services, this.filter, null);
       this.length = this.filteredItems !== undefined ? this.filteredItems.length : 0;
       this.page = 1;
     }

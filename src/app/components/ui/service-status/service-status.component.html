@@ -1,0 +1,15 @@
+<span>
+  <span *ngIf="status == 'Development'">
+    <i class="fa fa-wrench app-text-warning" aria-hidden="true"></i>
+  </span>
+  <span *ngIf="status == 'Production'">
+    <i class="fa fa-thumbs-up text-success" aria-hidden="true"></i>
+  </span>
+  <span *ngIf="status == 'Obsolete'">
+    <i class="fa fa-thumbs-down text-danger" aria-hidden="true"></i>
+  </span>
+  <span *ngIf="status === null">
+     <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
+  </span>
+   <!-- <em>{{ status | json }}</em> -->
+</span>

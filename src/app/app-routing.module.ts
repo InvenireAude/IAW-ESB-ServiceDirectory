@@ -12,6 +12,7 @@ import { InterfaceComponent } from './components/esb/interface/interface.compone
 import { InterfacesComponent } from './components/esb/interfaces/interfaces.component';
 import { ProgramComponent } from './components/esb/program/program.component';
 import { CallComponent } from './components/esb/call/call.component';
+import { ServicesComponent } from './components/esb/services/services.component';
 import { SystemStatsComponent } from './components/esb/system-stats/system-stats.component';
 import { QueueBrowserComponent } from './components/esb/queue-browser/queue-browser.component';
 import { BrokerStatsComponent } from './components/esb/broker-stats/broker-stats.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'interfaces',    component: InterfacesComponent  },
   { path: 'interface',     component: InterfaceComponent  },
   { path: 'namespaces',    component: NamespacesComponent  },
+  { path: 'services',      component: ServicesComponent },
   { path: 'program',       component: ProgramComponent  },
   { path: 'call',       component: CallComponent  },
   { path: 'systemStats',       component: SystemStatsComponent  },

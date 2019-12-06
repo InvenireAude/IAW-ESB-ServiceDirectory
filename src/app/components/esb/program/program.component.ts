@@ -8,7 +8,7 @@ declare var Lexed: any;
 declare var YScript2HTML: any;
 declare var links: any;
 
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-program',
@@ -20,7 +20,6 @@ export class ProgramComponent implements OnInit {
   sub: any;
   program: any;
   name: string;
-  public html: SafeHtml;
 
   lexer: Lexer = new Lexer();
 

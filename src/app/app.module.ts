@@ -17,7 +17,7 @@ import { SMService } from './services/esb/sm.service';
 import { TesterService } from './services/esb/tester.service';
 import { HttpService } from './services/http.service';
 import { LoaderService } from './services/loader.service';
-
+import { ConfigService } from './services/config.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,6 @@ import { MainModule } from './components/main/main.module';
 import { ESBModule } from './components/esb/esb.module';
 
 import { DefaultUrlSerializer, UrlSerializer, UrlTree } from '@angular/router';
-
 
 export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptions, loaderService: LoaderService) {
   return new HttpService(backend, defaultOptions, loaderService);
@@ -53,6 +52,7 @@ export function backendFactory(backend: XHRBackend, defaultOptions: RequestOptio
     SMService,
     TesterService,
     LoaderService,
+    ConfigService,
     CollectService,
      {
           provide: HttpService,

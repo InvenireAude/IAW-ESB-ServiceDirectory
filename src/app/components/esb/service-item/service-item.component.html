@@ -1,0 +1,44 @@
+<div>
+  <h4>
+      <!-- <i class="fa fa-hand-o-right app-service-pointer"></i> -->
+      <app-service-status class="app-service-pointer" [status]="info.status"></app-service-status>
+      {{ service.name }}
+    </h4>
+    <table class="display table table-striped app-fixed-table app-table">
+      <tr>
+        <th>Type : Namespace</th>
+        <td>
+          <a [routerLink]="['/type', { type: service.typeName, ns: service.typeNamespace}  ]">{{ service.typeName }}</a>
+           :
+          <a [routerLink]="['/types', { ns: service.typeNamespace } ]">{{ service.typeNamespace }} </a>
+        </td>
+      </tr>
+      <tr>
+        <th>Program</th>
+        <td><a [routerLink]="['/program', { name: service.program } ]"><code>{{ service.program }}</code></a></td>
+      </tr>
+      <tr *ngIf="info.status">
+          <th>Status</th>
+          <td>{{ info.status }}</td>
+      </tr>
+      <tr>
+          <th>Description</th>
+          <td><small #doc [innerHtml]="service.content">  </small></td>
+      </tr>
+      <tr *ngIf="info.versions">
+        <th>Versions</th>
+        <td>
+          <table class="display table table-bordered">
+            <tr *ngFor="let v of info.versions | slice:0:versionsToShow">
+              <td><em>{{v.id}}</em></td>
+              <td>{{v.title}}</td>
+              <td><a href="{{config.urlBaseForChangeDocs}}{{v.changeId}}">{{v.changeId}}</a></td>
+            </tr>
+          </table>
+          <div *ngIf="info.versions.length > versionsToShow">
+            <button class="btn btn-primary btn-sm" (click)="showAllVersions()">Show all ...</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>

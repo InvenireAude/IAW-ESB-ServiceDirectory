@@ -10,7 +10,8 @@ export class BrokerStatsComponent implements OnInit {
 
   public records: any[] = [];
 
-  public chartData: any[] = [];
+  public chartDataAvg: any[] = [];
+  public chartDataCount: any[] = [];
   public chartLabels: any[] = [];
 
   constructor(private qsystemService: QSystemService) { }
@@ -23,7 +24,8 @@ export class BrokerStatsComponent implements OnInit {
           console.log(this.records.length);
           this.records.forEach(r => {
             this.chartLabels.push(r.key);
-            this.chartData.push(r.avg);
+            this.chartDataAvg.push(r.avg);
+            this.chartDataCount.push(r.count);
           });
         }
       });
